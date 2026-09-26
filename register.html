@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('logo5.png');
+            background-size: 100% auto;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            text-align: center;
+            padding: 50px;
+            margin: 0;
+        }
+        .registration-container {
+            width: 400px;
+            margin: 100px auto;
+            background: linear-gradient(135deg, #e0f7fa, #b2ebf2);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            border: 1px solid #81d4fa;
+        }
+        input, select {
+            width: calc(100% - 16px);
+            padding: 14px;
+            margin-top: 20px;
+            border: 1px solid #81d4fa;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        button {
+            background-color: #29b6f6;
+            color: white;
+            border: none;
+            padding: 14px 25px;
+            cursor: pointer;
+            margin-top: 25px;
+            border-radius: 8px;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #03a9f4;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="registration-container">
+        <h2>User Registration</h2>
+        <form onsubmit="register(event)">
+            <input type="text" id="username" placeholder="Enter Username" required>
+            <input type="email" id="email" placeholder="Enter Email" required>
+            <input type="password" id="password" placeholder="Enter Password" required>
+
+            <!-- Country code dropdown -->
+            <select id="countryCode" required>
+                <option value="">Select Country Code</option>
+                <option value="+1">+1 (USA)</option>
+                <option value="+44">+44 (UK)</option>
+                <option value="+91">+91 (India)</option>
+                <option value="+61">+61 (Australia)</option>
+                <option value="+81">+81 (Japan)</option>
+                <option value="+33">+33 (France)</option>
+                <!-- Add more country codes as needed -->
+            </select>
+
+            <input type="tel" id="phone" placeholder="Enter Phone Number" required>
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+    <script>
+        function register(event) {
+            event.preventDefault();
+
+            const username = document.getElementById("username").value;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const countryCode = document.getElementById("countryCode").value;
+            const phone = document.getElementById("phone").value;
+
+            if (!countryCode) {
+                alert("Please select a country code.");
+                return;
+            }
+
+            // Create the user object
+            const user = {
+                username: username,
+                email: email,
+                password: password,
+                phone: `${countryCode} ${phone}` // Combine country code with phone number
+            };
+
+            // Store the user in localStorage
+            localStorage.setItem(`user_${username}`, JSON.stringify(user));
+
+            alert("Registration successful! You can now log in.");
+
+            // Redirect to the login page after successful registration
+            window.location.href = "login.html";
+        }
+    </script>
+
+</body>
+</html>

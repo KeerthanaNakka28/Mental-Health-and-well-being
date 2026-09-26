@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-image: url('logo5.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .profile-container {
+            width: 400px;
+            margin: 100px auto;
+            background: #a5d9d3;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="profile-container">
+        <h2>User Profile</h2>
+        <p><strong>Username:</strong> <span id="profileUsername">Loading...</span></p>
+        <p><strong>Email:</strong> <span id="profileEmail">Loading...</span></p>
+        <p><strong>Phone:</strong> <span id="profilePhone">Loading...</span></p>
+
+        <button onclick="enableEdit()">Edit</button>
+        <button id="startTestBtn" onclick="startTest()" style="display: block;">Start Test</button>
+
+        <div id="editForm" style="display: none;">
+            <input type="text" id="editUsername" placeholder="New Username">
+            <input type="email" id="editEmail" placeholder="New Email">
+            <input type="tel" id="editPhone" placeholder="New Phone">
+            <button onclick="saveProfile()">Save</button>
+        </div>
+    </div>
+
+    <script>
+        function loadProfile() {
+            const user = JSON.parse(localStorage.getItem("loggedInUser"));
+
+            if (user) {
+                document.getElementById("profileUsername").innerText = user.username || "Username not available";
+                document.getElementById("profileEmail").innerText = user.email || "Email not available";
+                document.getElementById("profilePhone").innerText = user.phone || "Phone not available";
+                document.getElementById("startTestBtn").style.display = "block";
+            } else {
+                alert("No user logged in. Redirecting to login.");
+                window.location.href = "login.html";
+            }
+        }
+
+        function enableEdit() {
+            document.getElementById("editForm").style.display = "block";
+        }
+
+        function saveProfile() {
+            let newUsername = document.getElementById("editUsername").value;
+            let newEmail = document.getElementById("editEmail").value;
+            let newPhone = document.getElementById("editPhone").value;
+
+            // Get user from localStorage and update profile
+            const user = JSON.parse(localStorage.getItem("loggedInUser"));
+
+            if (user) {
+                user.username = newUsername || user.username;
+                user.email = newEmail || user.email;
+                user.phone = newPhone || user.phone;
+
+                // Save updated user to localStorage
+                localStorage.setItem("loggedInUser", JSON.stringify(user));
+
+                // Update profile details
+                document.getElementById("profileUsername").innerText = user.username;
+                document.getElementById("profileEmail").innerText = user.email;
+                document.getElementById("profilePhone").innerText = user.phone;
+
+                alert("Profile updated!");
+                document.getElementById("editForm").style.display = "none";
+            }
+        }
+
+        function startTest() {
+            window.location.href = "form.html"; // Redirect to form.html (test page)
+        }
+
+        // Load the user profile when the page is loaded
+        document.addEventListener("DOMContentLoaded", loadProfile);
+    </script>
+
+</body>
+</html>

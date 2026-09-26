@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Health Assessment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-image: url('logo5.png'); 
+            background-size: cover;
+            background-repeat: no-repeat; 
+            background-attachment: fixed;
+            background-position: center; 
+            background-color: #fefefe;
+        }
+        .container {
+            max-width: 500px;
+            margin: auto;
+            padding: 20px;
+            background: rgb(137, 180, 178, 0.8); 
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .logo {
+            width: 100px;
+            height: auto;
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            text-align: left;
+        }
+        select, input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 50%;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        #results {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background: #fff3cd;
+            border-left: 5px solid #856404;
+            border-radius: 5px;
+            text-align: left;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <img src="logo2.jpeg" alt="Logo" class="logo">
+    <h2>Mental Health Assessment</h2>
+    <form id="healthForm">
+        <label for="mood">Mood:</label>
+        <select id="mood">
+            <option value="happy">Happy</option>
+            <option value="neutral">Neutral</option>
+            <option value="sad">Sad</option>
+            <option value="anxious">Anxious</option>
+        </select>
+
+        <label for="stressLevel">Stress Level (1-10):</label>
+        <input type="number" id="stressLevel" min="1" max="10" required>
+
+        <label for="sleepQuality">Sleep Quality:</label>
+        <select id="sleepQuality">
+            <option value="good">Good</option>
+            <option value="average">Average</option>
+            <option value="poor">Poor</option>
+        </select>
+
+        <label for="exercise">Exercise Regularity:</label>
+        <select id="exercise">
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
+
+        <label for="anxietyLevel">Anxiety Level:</label>
+        <select id="anxietyLevel">
+            <option value="rarely">Rarely</option>
+            <option value="sometimes">Sometimes</option>
+            <option value="frequently">Frequently</option>
+            <option value="always">Always</option>
+        </select>
+
+        <label for="socialInteraction">Social Interaction:</label>
+        <select id="socialInteraction">
+            <option value="often">Often</option>
+            <option value="sometimes">Sometimes</option>
+            <option value="rarely">Rarely</option>
+            <option value="never">Never</option>
+        </select>
+
+        <label for="diet">Diet:</label>
+        <select id="diet">
+            <option value="good">Good</option>
+            <option value="average">Average</option>
+            <option value="poor">Poor</option>
+        </select>
+
+        <label for="focus">Focus Difficulty:</label>
+        <select id="focus">
+            <option value="never">Never</option>
+            <option value="rarely">Rarely</option>
+            <option value="often">Often</option>
+            <option value="always">Always</option>
+        </select>
+
+        <label for="motivation">Motivation:</label>
+        <select id="motivation">
+            <option value="motivated">Motivated</option>
+            <option value="not_motivated">Not Motivated</option>
+        </select>
+
+        <label for="wellBeing">Overall Well-Being (1-10):</label>
+        <input type="number" id="wellBeing" min="1" max="10" required>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <div id="results"></div>
+</div>
+<script src="script.js"></script>
+
+</body>
+</html>

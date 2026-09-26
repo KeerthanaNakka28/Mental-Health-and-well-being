@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-image: url('logo5.png'); 
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+        }
+
+        #searchResults {
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8); 
+            border-radius: 10px;
+            max-width: 900px;
+            margin: 20px auto;
+            text-align: left;
+            color: #333;
+        }
+
+        #searchResults h2 {
+            color: #007bff;
+            text-align: center;
+        }
+
+        #resultsContainer {
+            color: #000; 
+        }
+
+        .search-result-item {
+            border-bottom: 1px solid #ccc;
+            padding: 10px 0;
+        }
+
+        .search-result-item a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .search-result-item a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div id="searchResults">
+        <h2>Search Results</h2>
+        <div id="resultsContainer"></div>
+    </div>
+    <script src="search.js"></script>
+</body>
+</html>
