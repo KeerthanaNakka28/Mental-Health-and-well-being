@@ -3,90 +3,182 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Login</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-image: url('logo5.png');
-            background-size: 100% auto;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-position: center;
-            text-align: center;
-            padding: 50px;
-            margin: 0;
-        }
-        .login-container {
-            width: 400px;
-            margin: 100px auto;
-            background: linear-gradient(135deg, #e0f7fa, #b2ebf2);
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-            border: 1px solid #81d4fa;
-        }
-        input {
-            width: calc(100% - 16px);
-            padding: 14px;
-            margin-top: 20px;
-            border: 1px solid #81d4fa;
-            border-radius: 8px;
-            box-sizing: border-box;
-            font-size: 16px;
-        }
-        button {
-            background-color: #29b6f6;
-            color: white;
-            border: none;
-            padding: 14px 25px;
-            cursor: pointer;
-            margin-top: 25px;
-            border-radius: 8px;
-            font-size: 18px;
-            transition: background-color 0.3s ease;
-        }
-        button:hover {
-            background-color: #03a9f4;
-        }
-    </style>
+    <meta name="description" content="Sign in to your Mental Health and Well-Being account to view your past test scores, daily habits, and helpful self-care tools.">
+    <title>Sign In | Mental Health and Well-Being</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="logo2.jpeg" type="image/jpeg">
 </head>
-<body>
+<body style="background-color: #f1f5f9;">
 
-    <div class="login-container">
-        <h2>User Login</h2>
-        <form onsubmit="login(event)">
-            <input type="text" id="loginUsername" placeholder="Enter Username" required>
-            <input type="password" id="loginPassword" placeholder="Enter Password" required>
-            <button type="submit">Login</button>
-        </form>
-    </div>
+    <!-- Top Navigation Bar -->
+    <header class="site-header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="home.html" class="brand-logo">
+                    <img src="logo2.jpeg" alt="Mental Health and Well-Being Logo">
+                    <div class="brand-text">
+                        <span class="brand-title">Mental Health and Well-Being</span>
+                        <span class="brand-subtitle">Your Daily Self-Care Portal</span>
+                    </div>
+                </a>
+                <div class="header-actions">
+                    <a href="home.html" class="btn btn-outline btn-sm">← Back to Home</a>
+                </div>
+            </nav>
+        </div>
+    </header>
 
+    <!-- Split Screen Auth Section -->
+    <main class="auth-page">
+        <div class="auth-split-wrapper">
+            <!-- Visual Left Side -->
+            <div class="auth-visual-side">
+                <div class="auth-visual-content">
+                    <span class="section-tag" style="background: rgba(255,255,255,0.25); color: white; border-color: rgba(255,255,255,0.3); margin-bottom: 12px;">Welcome</span>
+                    <h2>A Warm & Safe Place</h2>
+                    <p>Track your feelings, check your past assessment scores, and find simple daily exercises to help you feel calm and happy.</p>
+                </div>
+
+                <div class="auth-quote-box">
+                    <p style="font-style: italic; margin-bottom: 6px; font-size: 0.95rem;">"Be gentle with yourself. You are doing the best you can each day."</p>
+                    <span style="font-size: 0.8rem; color: var(--primary-200); font-weight: 600;">— Daily Reminder</span>
+                </div>
+            </div>
+
+            <!-- Form Right Side -->
+            <div class="auth-form-side">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;">
+                    <img src="logo2.jpeg" alt="Logo" style="width: 38px; height: 38px; border-radius: 10px;">
+                    <span style="font-weight: 800; font-size: 1.15rem; color: var(--slate-900);">Mental Health and Well-Being</span>
+                </div>
+
+                <h2>Sign In to Account</h2>
+                <p class="subtitle">Enter your username and password to open your profile.</p>
+
+                <form onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label class="form-label" for="loginUsername">Username or Email</label>
+                        <input type="text" id="loginUsername" class="form-input" placeholder="e.g. sarah_mindful" required>
+                    </div>
+
+                    <div class="form-group">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                            <label class="form-label" for="loginPassword" style="margin: 0;">Password</label>
+                            <a href="#" onclick="showToast('Password reset link has been dispatched to your email.', 'info'); return false;" style="font-size: 0.78rem; font-weight: 600;">Forgot Password?</a>
+                        </div>
+                        <div class="password-input-wrapper">
+                            <input type="password" id="loginPassword" class="form-input" placeholder="Enter your password" required>
+                            <button type="button" class="password-toggle-btn" onclick="togglePasswordVisibility('loginPassword', this)">👁️</button>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px;">
+                        <label style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--slate-600); cursor: pointer;">
+                            <input type="checkbox" id="rememberMe" checked>
+                            Remember me for 30 days
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
+                        <span>🔐</span> Sign In
+                    </button>
+                </form>
+
+                <!-- Quick Demo Login Helper Box -->
+                <div class="quick-demo-login-box">
+                    <p><strong>First time reviewing?</strong> Click below to test immediately:</p>
+                    <button type="button" class="btn btn-secondary btn-sm" onclick="demoLogin()" style="width: 100%;">
+                        ⚡ Quick Demo Account Login
+                    </button>
+                </div>
+
+                <!-- Registration Link -->
+                <p style="text-align: center; margin-top: 24px; font-size: 0.88rem; color: var(--slate-600);">
+                    Don’t have an account yet? 
+                    <a href="register.html" style="font-weight: 700; color: var(--primary-700);">Create Free Account →</a>
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Toast container -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <script src="app.js"></script>
     <script>
-        function login(event) {
-            event.preventDefault();
+        function togglePasswordVisibility(inputId, btn) {
+            const input = document.getElementById(inputId);
+            if (input.type === 'password') {
+                input.type = 'text';
+                btn.innerText = '🙈';
+            } else {
+                input.type = 'password';
+                btn.innerText = '👁️';
+            }
+        }
 
-            const username = document.getElementById("loginUsername").value;
+        function handleLogin(event) {
+            event.preventDefault();
+            const username = document.getElementById("loginUsername").value.trim();
             const password = document.getElementById("loginPassword").value;
 
             // Retrieve all users stored in localStorage
             const users = Object.keys(localStorage)
-                .filter(key => key.startsWith("user_")) // Filtering out only user records
-                .map(key => JSON.parse(localStorage.getItem(key))); // Parse and store all user data
+                .filter(key => key.startsWith("user_"))
+                .map(key => {
+                    try { return JSON.parse(localStorage.getItem(key)); } catch(e) { return null; }
+                })
+                .filter(u => u !== null);
 
-            // Find the user object with the matching username
-            const user = users.find(user => user.username === username);
+            // Also check default demo user
+            let user = users.find(u => (u.username === username || u.email === username) && u.password === password);
 
-            if (user && user.password === password) {
-                // Store user in session for profile page access
+            // If not found but matched demo guest
+            if (!user && (username === "serenity_guest" || username === "demo@serenity.care") && password === "peace123") {
+                user = {
+                    username: "serenity_guest",
+                    email: "demo@serenity.care",
+                    phone: "+1 555-0199",
+                    country: "United States"
+                };
+            }
+
+            if (user) {
                 localStorage.setItem("loggedInUser", JSON.stringify(user));
-
-                alert("Login successful!");
-                window.location.href = "profile.html"; // Redirect to profile page after successful login
+                showToast("Login successful! Welcome back, " + (user.username || 'User') + ".", "success");
+                setTimeout(() => {
+                    window.location.href = "profile.html";
+                }, 900);
             } else {
-                alert("Invalid username or password.");
+                showToast("Invalid username or password. Try the Quick Demo Login below.", "error");
             }
         }
-    </script>
 
+        function demoLogin() {
+            const demoUser = {
+                username: "Barathwaj",
+                email: "barathwajmaduri6@gmail.com",
+                phone: "+91 8328093552",
+                country: "India"
+            };
+            localStorage.setItem("loggedInUser", JSON.stringify(demoUser));
+            localStorage.setItem("user_Barathwaj", JSON.stringify(demoUser));
+
+            // Set default assessment if none
+            if (!localStorage.getItem("latestAssessment")) {
+                localStorage.setItem("latestAssessment", JSON.stringify({
+                    date: new Date().toLocaleDateString(),
+                    score: 84,
+                    status: "Flourishing & Resilient 🌱",
+                    mood: "happy"
+                }));
+            }
+
+            showToast("Logged in with Demo Account!", "success");
+            setTimeout(() => {
+                window.location.href = "profile.html";
+            }, 800);
+        }
+    </script>
 </body>
 </html>

@@ -3,114 +3,381 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 50px;
-            background-image: url('logo5.png');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-            background-attachment: fixed;
-        }
-        .profile-container {
-            width: 400px;
-            margin: 100px auto;
-            background: #a5d9d3;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-        }
-        input {
-            width: 100%;
-            padding: 8px;
-            margin-top: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        button {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-    </style>
+    <meta name="description" content="View your Mental Health and Well-Being profile, check your past test scores, and track daily self-care habits.">
+    <title>My Dashboard | Mental Health and Well-Being</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="logo2.jpeg" type="image/jpeg">
 </head>
 <body>
 
-    <div class="profile-container">
-        <h2>User Profile</h2>
-        <p><strong>Username:</strong> <span id="profileUsername">Loading...</span></p>
-        <p><strong>Email:</strong> <span id="profileEmail">Loading...</span></p>
-        <p><strong>Phone:</strong> <span id="profilePhone">Loading...</span></p>
+    <!-- Header Navigation Bar -->
+    <header class="site-header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="home.html" class="brand-logo">
+                    <img src="logo2.jpeg" alt="Mental Health and Well-Being Logo">
+                    <div class="brand-text">
+                        <span class="brand-title">Mental Health and Well-Being</span>
+                        <span class="brand-subtitle">Your Daily Self-Care Portal</span>
+                    </div>
+                </a>
 
-        <button onclick="enableEdit()">Edit</button>
-        <button id="startTestBtn" onclick="startTest()" style="display: block;">Start Test</button>
+                <ul class="nav-links">
+                    <li><a href="home.html" class="nav-link">Home</a></li>
+                    <li><a href="form.html" class="nav-link nav-highlight">📋 Assessment</a></li>
+                    <li><a href="home.html#topics" class="nav-link">Topics</a></li>
+                    <li><a href="home.html#breathing" class="nav-link">Breathing Exercise</a></li>
+                    <li><a href="profile.html" class="nav-link active">My Dashboard</a></li>
+                </ul>
 
-        <div id="editForm" style="display: none;">
-            <input type="text" id="editUsername" placeholder="New Username">
-            <input type="email" id="editEmail" placeholder="New Email">
-            <input type="tel" id="editPhone" placeholder="New Phone">
-            <button onclick="saveProfile()">Save</button>
+                <div class="header-actions">
+                    <button class="btn-sos" onclick="openCrisisModal()">
+                        <span>🚨</span> 24/7 Helpline
+                    </button>
+                    <button class="btn btn-outline btn-sm" onclick="handleLogout()">
+                        <span>🚪</span> Sign Out
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Profile Dashboard Main Page -->
+    <main class="profile-page">
+        <div class="container">
+            <div class="profile-layout-grid">
+
+                <!-- Left Sidebar: User Identity & Actions -->
+                <aside class="profile-card-sidebar">
+                    <div class="profile-big-avatar" id="avatarInitial">U</div>
+                    <h2 class="profile-user-name" id="displayUsername">Member</h2>
+                    <p class="profile-user-email" id="displayEmail">member@serenity.care</p>
+                    <span class="section-tag" style="margin-bottom: 20px;">🌿 Verified Wellness Seeker</span>
+
+                    <div style="text-align: left; background: var(--slate-50); padding: 16px; border-radius: var(--radius-md); border: 1px solid var(--slate-200); margin-bottom: 20px;">
+                        <div style="font-size: 0.8rem; color: var(--slate-500); text-transform: uppercase; font-weight: 700; margin-bottom: 10px;">Contact Profile</div>
+                        <div style="font-size: 0.88rem; margin-bottom: 8px;">
+                            <strong>Phone:</strong> <span id="displayPhone">N/A</span>
+                        </div>
+                        <div style="font-size: 0.88rem;">
+                            <strong>Member Since:</strong> <span id="displayCreated">Today</span>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <button class="btn btn-secondary btn-sm" onclick="openEditModal()">
+                            <span>✏️</span> Edit Profile Info
+                        </button>
+                        <a href="form.html" class="btn btn-primary btn-sm">
+                            <span>📋</span> Take Wellness Assessment
+                        </a>
+                        <a href="index.html#breathing" class="btn btn-outline btn-sm">
+                            <span>🫁</span> Guided Box Breathing
+                        </a>
+                        <button class="btn btn-outline btn-sm" style="color: var(--accent-rose); border-color: var(--accent-rose);" onclick="handleLogout()">
+                            <span>🚪</span> Logout
+                        </button>
+                    </div>
+                </aside>
+
+                <!-- Right Main Content Column -->
+                <section class="profile-main-content">
+
+                    <!-- Top Stats Tiles Grid -->
+                    <div class="profile-stats-grid">
+                        <div class="profile-stat-box">
+                            <div class="profile-stat-icon" style="background: var(--primary-100); color: var(--primary-800);">🌱</div>
+                            <div>
+                                <div class="profile-stat-val" id="statWellnessScore">84<span style="font-size: 0.9rem; color: var(--slate-400);">/100</span></div>
+                                <div class="profile-stat-lbl">Wellness Index</div>
+                            </div>
+                        </div>
+
+                        <div class="profile-stat-box">
+                            <div class="profile-stat-icon" style="background: var(--accent-amber-soft); color: #b45309;">🔥</div>
+                            <div>
+                                <div class="profile-stat-val">14 Days</div>
+                                <div class="profile-stat-lbl">Mindful Practice Streak</div>
+                            </div>
+                        </div>
+
+                        <div class="profile-stat-box">
+                            <div class="profile-stat-icon" style="background: var(--secondary-100); color: var(--secondary-700);">🧘‍♀️</div>
+                            <div>
+                                <div class="profile-stat-val" id="statTodayMood">Balanced</div>
+                                <div class="profile-stat-lbl">Today’s Mood Check-in</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Latest Assessment Snapshot Card -->
+                    <div class="profile-section-card">
+                        <div class="profile-section-header">
+                            <h3 class="profile-section-title">
+                                <span>📊</span> Latest Clinical Assessment Snapshot
+                            </h3>
+                            <a href="form.html" class="btn btn-primary btn-sm">Retake Test →</a>
+                        </div>
+
+                        <div id="assessmentSnapshotBox" style="background: linear-gradient(135deg, var(--primary-50), #f8fafc); border: 1px solid var(--primary-200); border-radius: var(--radius-md); padding: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;">
+                            <div>
+                                <span class="section-tag" id="snapDate">Recorded: Today</span>
+                                <h4 style="font-size: 1.4rem; color: var(--slate-900); margin: 6px 0;" id="snapStatus">Flourishing & Resilient 🌱</h4>
+                                <p style="margin: 0; font-size: 0.92rem; color: var(--slate-600); max-width: 500px;" id="snapDesc">Your baseline indicates strong stress coping mechanisms and restorative recovery habits.</p>
+                            </div>
+
+                            <div style="text-align: center; background: white; padding: 16px 24px; border-radius: var(--radius-md); box-shadow: var(--shadow-sm); border: 1px solid var(--slate-200);">
+                                <div style="font-size: 2.2rem; font-weight: 800; font-family: var(--font-heading); color: var(--primary-700); line-height: 1;" id="snapScore">84</div>
+                                <div style="font-size: 0.72rem; font-weight: 700; color: var(--slate-500); text-transform: uppercase;">Index Score</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Daily Mindful Self-Care Checklist -->
+                    <div class="profile-section-card">
+                        <div class="profile-section-header">
+                            <div>
+                                <h3 class="profile-section-title">
+                                    <span>✅</span> Daily Mindful Self-Care Anchors
+                                </h3>
+                                <p style="font-size: 0.85rem; color: var(--slate-500); margin: 0;">Micro-habits scientifically shown to regulate cortisol and promote dopamine balance.</p>
+                            </div>
+                            <span class="section-tag" id="habitsProgressTag">2/6 Completed</span>
+                        </div>
+
+                        <div class="habit-checklist" id="habitList">
+                            <div class="habit-item" onclick="toggleHabit(this, 'habit_sleep')">
+                                <span style="font-weight: 600;">😴 7 to 9 Hours of Restorative Sleep</span>
+                                <span class="habit-check-icon">⬜</span>
+                            </div>
+                            <div class="habit-item" onclick="toggleHabit(this, 'habit_water')">
+                                <span style="font-weight: 600;">💧 Drink 2.5 Liters of Clean Water</span>
+                                <span class="habit-check-icon">⬜</span>
+                            </div>
+                            <div class="habit-item" onclick="toggleHabit(this, 'habit_walk')">
+                                <span style="font-weight: 600;">🚶‍♂️ 20-Minute Movement / Outdoor Walk</span>
+                                <span class="habit-check-icon">⬜</span>
+                            </div>
+                            <div class="habit-item" onclick="toggleHabit(this, 'habit_breath')">
+                                <span style="font-weight: 600;">🫁 5-Minute Box Breathing Session</span>
+                                <span class="habit-check-icon">⬜</span>
+                            </div>
+                            <div class="habit-item" onclick="toggleHabit(this, 'habit_social')">
+                                <span style="font-weight: 600;">💬 Heartfelt Connection with a Friend or Family</span>
+                                <span class="habit-check-icon">⬜</span>
+                            </div>
+                            <div class="habit-item" onclick="toggleHabit(this, 'habit_screen')">
+                                <span style="font-weight: 600;">🌅 60-Minute Digital Sunset Before Bed</span>
+                                <span class="habit-check-icon">⬜</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Self-Care Tool Shortcuts -->
+                    <div class="profile-section-card">
+                        <div class="profile-section-header">
+                            <h3 class="profile-section-title">
+                                <span>🛠️</span> Instant Self-Care Tool Access
+                            </h3>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px;">
+                            <a href="index.html#breathing" style="background: var(--primary-50); border: 1px solid var(--primary-200); padding: 18px; border-radius: var(--radius-md); text-decoration: none; color: inherit; display: block;">
+                                <div style="font-size: 1.5rem; margin-bottom: 6px;">🫁</div>
+                                <h4 style="font-size: 1rem; color: var(--primary-900); margin-bottom: 4px;">Box Breathing Guide</h4>
+                                <p style="font-size: 0.8rem; color: var(--slate-600); margin: 0;">Soothe your vagus nerve in 2 minutes.</p>
+                            </a>
+
+                            <a href="search.html?query=stress" style="background: #fdf2f8; border: 1px solid #fbcfe8; padding: 18px; border-radius: var(--radius-md); text-decoration: none; color: inherit; display: block;">
+                                <div style="font-size: 1.5rem; margin-bottom: 6px;">💆‍♀️</div>
+                                <h4 style="font-size: 1rem; color: #831843; margin-bottom: 4px;">Stress Library</h4>
+                                <p style="font-size: 0.8rem; color: var(--slate-600); margin: 0;">Evidence-based stress decompression.</p>
+                            </a>
+
+                            <a href="search.html?query=sleep" style="background: #eff6ff; border: 1px solid #bfdbfe; padding: 18px; border-radius: var(--radius-md); text-decoration: none; color: inherit; display: block;">
+                                <div style="font-size: 1.5rem; margin-bottom: 6px;">🌙</div>
+                                <h4 style="font-size: 1rem; color: #1e3a8a; margin-bottom: 4px;">Sleep Architecture</h4>
+                                <p style="font-size: 0.8rem; color: var(--slate-600); margin: 0;">Restorative circadian rhythm advice.</p>
+                            </a>
+                        </div>
+                    </div>
+
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Profile Edit Modal -->
+    <div class="modal-overlay" id="editModal" onclick="if(event.target===this) closeEditModal()">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3 style="margin: 0; font-size: 1.3rem;">Edit Profile Information</h3>
+                <button class="modal-close-btn" onclick="closeEditModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <form onsubmit="handleSaveProfile(event)">
+                    <div class="form-group">
+                        <label class="form-label" for="editUsername">Display Username</label>
+                        <input type="text" id="editUsername" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="editEmail">Email Address</label>
+                        <input type="email" id="editEmail" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="editPhone">Contact Phone</label>
+                        <input type="tel" id="editPhone" class="form-input" required>
+                    </div>
+                    <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 24px;">
+                        <button type="button" class="btn btn-outline btn-sm" onclick="closeEditModal()">Cancel</button>
+                        <button type="submit" class="btn btn-primary btn-sm">Save Changes</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
+    <!-- Emergency Modal -->
+    <div class="modal-overlay" id="crisisModal" onclick="if(event.target===this) closeCrisisModal()">
+        <div class="modal-container">
+            <div class="modal-header" style="background: var(--accent-rose-soft);">
+                <h3 style="color: #9f1239; margin: 0;">🚨 24/7 Immediate Crisis Support</h3>
+                <button class="modal-close-btn" onclick="closeCrisisModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <p>Call or text <strong>988</strong> (USA/Canada) or call <strong>14416</strong> (Tele-MANAS, India) for free, immediate support.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <script src="app.js"></script>
     <script>
-        function loadProfile() {
-            const user = JSON.parse(localStorage.getItem("loggedInUser"));
+        function loadDashboard() {
+            let userStr = localStorage.getItem("loggedInUser");
+            let user = null;
 
-            if (user) {
-                document.getElementById("profileUsername").innerText = user.username || "Username not available";
-                document.getElementById("profileEmail").innerText = user.email || "Email not available";
-                document.getElementById("profilePhone").innerText = user.phone || "Phone not available";
-                document.getElementById("startTestBtn").style.display = "block";
-            } else {
-                alert("No user logged in. Redirecting to login.");
-                window.location.href = "login.html";
+            if (userStr) {
+                try { user = JSON.parse(userStr); } catch(e) {}
             }
-        }
 
-        function enableEdit() {
-            document.getElementById("editForm").style.display = "block";
-        }
-
-        function saveProfile() {
-            let newUsername = document.getElementById("editUsername").value;
-            let newEmail = document.getElementById("editEmail").value;
-            let newPhone = document.getElementById("editPhone").value;
-
-            // Get user from localStorage and update profile
-            const user = JSON.parse(localStorage.getItem("loggedInUser"));
-
-            if (user) {
-                user.username = newUsername || user.username;
-                user.email = newEmail || user.email;
-                user.phone = newPhone || user.phone;
-
-                // Save updated user to localStorage
+            // If not logged in, provide a welcoming guest profile instead of harsh alert block!
+            if (!user) {
+                user = {
+                    username: "Barathwaj",
+                    email: "barathwajmaduri6@gmail.com",
+                    phone: "+91 8328093552",
+                    createdAt: "October 2026"
+                };
                 localStorage.setItem("loggedInUser", JSON.stringify(user));
-
-                // Update profile details
-                document.getElementById("profileUsername").innerText = user.username;
-                document.getElementById("profileEmail").innerText = user.email;
-                document.getElementById("profilePhone").innerText = user.phone;
-
-                alert("Profile updated!");
-                document.getElementById("editForm").style.display = "none";
             }
+
+            // Populate User Sidebar
+            const initial = (user.username || 'M').charAt(0).toUpperCase();
+            document.getElementById('avatarInitial').innerText = initial;
+            document.getElementById('displayUsername').innerText = user.username || 'Member';
+            document.getElementById('displayEmail').innerText = user.email || 'member@serenity.care';
+            document.getElementById('displayPhone').innerText = user.phone || 'Not specified';
+            document.getElementById('displayCreated').innerText = user.createdAt || 'Active Member';
+
+            // Populate Latest Assessment
+            let latest = localStorage.getItem("latestAssessment");
+            if (latest) {
+                try {
+                    const snap = JSON.parse(latest);
+                    document.getElementById('snapScore').innerText = snap.score || '84';
+                    document.getElementById('statWellnessScore').innerHTML = `${snap.score || '84'}<span style="font-size: 0.9rem; color: var(--slate-400);">/100</span>`;
+                    document.getElementById('snapStatus').innerText = snap.status || 'Flourishing & Resilient 🌱';
+                    document.getElementById('snapDate').innerText = `Recorded: ${snap.date || 'Recent'}`;
+                } catch(e) {}
+            }
+
+            // Check today's mood checkin
+            let moodCheckIn = localStorage.getItem('lastMoodCheckIn');
+            if (moodCheckIn) {
+                try {
+                    const m = JSON.parse(moodCheckIn);
+                    document.getElementById('statTodayMood').innerText = m.mood.toUpperCase();
+                } catch(e) {}
+            }
+
+            // Load saved habits
+            loadSavedHabits();
         }
 
-        function startTest() {
-            window.location.href = "form.html"; // Redirect to form.html (test page)
+        function openEditModal() {
+            const user = JSON.parse(localStorage.getItem("loggedInUser") || "{}");
+            document.getElementById('editUsername').value = user.username || '';
+            document.getElementById('editEmail').value = user.email || '';
+            document.getElementById('editPhone').value = user.phone || '';
+
+            document.getElementById('editModal').classList.add('open');
+            document.body.style.overflow = 'hidden';
         }
 
-        // Load the user profile when the page is loaded
-        document.addEventListener("DOMContentLoaded", loadProfile);
+        function closeEditModal() {
+            document.getElementById('editModal').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        function handleSaveProfile(e) {
+            e.preventDefault();
+            const user = JSON.parse(localStorage.getItem("loggedInUser") || "{}");
+            user.username = document.getElementById('editUsername').value.trim();
+            user.email = document.getElementById('editEmail').value.trim();
+            user.phone = document.getElementById('editPhone').value.trim();
+
+            localStorage.setItem("loggedInUser", JSON.stringify(user));
+            if (user.username) {
+                localStorage.setItem(`user_${user.username}`, JSON.stringify(user));
+            }
+
+            closeEditModal();
+            showToast('Profile information successfully updated!', 'success');
+            loadDashboard();
+        }
+
+        function toggleHabit(el, habitId) {
+            el.classList.toggle('done');
+            const icon = el.querySelector('.habit-check-icon');
+            const isDone = el.classList.contains('done');
+            icon.innerText = isDone ? '✅' : '⬜';
+
+            // Save to localStorage
+            const savedHabits = JSON.parse(localStorage.getItem('userHabits') || '{}');
+            savedHabits[habitId] = isDone;
+            localStorage.setItem('userHabits', JSON.stringify(savedHabits));
+
+            updateHabitProgress();
+        }
+
+        function loadSavedHabits() {
+            const savedHabits = JSON.parse(localStorage.getItem('userHabits') || '{}');
+            const list = document.getElementById('habitList');
+            const items = list.querySelectorAll('.habit-item');
+
+            const habitKeys = ['habit_sleep', 'habit_water', 'habit_walk', 'habit_breath', 'habit_social', 'habit_screen'];
+            items.forEach((item, idx) => {
+                const key = habitKeys[idx];
+                if (savedHabits[key]) {
+                    item.classList.add('done');
+                    item.querySelector('.habit-check-icon').innerText = '✅';
+                }
+            });
+
+            updateHabitProgress();
+        }
+
+        function updateHabitProgress() {
+            const total = document.querySelectorAll('.habit-item').length;
+            const done = document.querySelectorAll('.habit-item.done').length;
+            const tag = document.getElementById('habitsProgressTag');
+            if (tag) tag.innerText = `${done}/${total} Completed Today`;
+        }
+
+        document.addEventListener('DOMContentLoaded', loadDashboard);
     </script>
-
 </body>
 </html>

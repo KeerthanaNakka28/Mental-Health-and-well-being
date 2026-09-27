@@ -3,151 +3,419 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mental Health Assessment</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-image: url('logo5.png'); 
-            background-size: cover;
-            background-repeat: no-repeat; 
-            background-attachment: fixed;
-            background-position: center; 
-            background-color: #fefefe;
-        }
-        .container {
-            max-width: 500px;
-            margin: auto;
-            padding: 20px;
-            background: rgb(137, 180, 178, 0.8); 
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-        .logo {
-            width: 100px;
-            height: auto;
-            margin-bottom: 15px;
-        }
-        label {
-            display: block;
-            margin: 10px 0 5px;
-            text-align: left;
-        }
-        select, input {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        button {
-            background-color: #28a745;
-            color: white;
-            padding: 10px;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-            width: 50%;
-        }
-        button:hover {
-            background-color: #218838;
-        }
-        #results {
-            display: none;
-            margin-top: 20px;
-            padding: 15px;
-            background: #fff3cd;
-            border-left: 5px solid #856404;
-            border-radius: 5px;
-            text-align: left;
-        }
-        input[type="number"] {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-    </style>
+    <meta name="description" content="Take our simple 10-question Mental Health and Well-Being assessment to check your stress, sleep, and emotional balance with friendly tips.">
+    <title>Assessment | Mental Health and Well-Being</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="logo2.jpeg" type="image/jpeg">
 </head>
 <body>
 
-<div class="container">
-    <img src="logo2.jpeg" alt="Logo" class="logo">
-    <h2>Mental Health Assessment</h2>
-    <form id="healthForm">
-        <label for="mood">Mood:</label>
-        <select id="mood">
-            <option value="happy">Happy</option>
-            <option value="neutral">Neutral</option>
-            <option value="sad">Sad</option>
-            <option value="anxious">Anxious</option>
-        </select>
+    <!-- Header Navigation -->
+    <header class="site-header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="home.html" class="brand-logo">
+                    <img src="logo2.jpeg" alt="Mental Health and Well-Being Logo">
+                    <div class="brand-text">
+                        <span class="brand-title">Mental Health and Well-Being</span>
+                        <span class="brand-subtitle">Your Daily Self-Care Portal</span>
+                    </div>
+                </a>
 
-        <label for="stressLevel">Stress Level (1-10):</label>
-        <input type="number" id="stressLevel" min="1" max="10" required>
+                <ul class="nav-links">
+                    <li><a href="home.html" class="nav-link">Home</a></li>
+                    <li><a href="form.html" class="nav-link nav-highlight active">📋 Assessment</a></li>
+                    <li><a href="home.html#topics" class="nav-link">Topics</a></li>
+                    <li><a href="home.html#breathing" class="nav-link">Breathing Exercise</a></li>
+                    <li><a href="home.html#about" class="nav-link">About Us</a></li>
+                    <li><a href="home.html#contact" class="nav-link">Contact Us</a></li>
+                </ul>
 
-        <label for="sleepQuality">Sleep Quality:</label>
-        <select id="sleepQuality">
-            <option value="good">Good</option>
-            <option value="average">Average</option>
-            <option value="poor">Poor</option>
-        </select>
+                <div class="header-actions">
+                    <button class="btn-sos" onclick="openCrisisModal()">
+                        <span>🚨</span> 24/7 Helpline
+                    </button>
+                    <a href="home.html" class="btn btn-outline btn-sm">← Back to Home</a>
+                </div>
+            </nav>
+        </div>
+    </header>
 
-        <label for="exercise">Exercise Regularity:</label>
-        <select id="exercise">
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
-        </select>
+    <!-- Assessment Main Content -->
+    <main class="assessment-page">
+        <div class="container">
+            <div class="assessment-wrapper">
+                <!-- Assessment Header -->
+                <div class="assessment-header">
+                    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
+                        <div>
+                            <span class="section-tag" style="background: rgba(255,255,255,0.2); color: white; border-color: rgba(255,255,255,0.3); margin-bottom: 8px;">2-Minute Quick Check</span>
+                            <h1>Mental Health and Well-Being Assessment</h1>
+                            <p>Answer 10 simple questions to check how you are feeling and get easy, practical everyday tips.</p>
+                        </div>
+                        <img src="logo2.jpeg" alt="Logo" style="width: 56px; height: 56px; border-radius: 14px; border: 2px solid rgba(255,255,255,0.4);">
+                    </div>
 
-        <label for="anxietyLevel">Anxiety Level:</label>
-        <select id="anxietyLevel">
-            <option value="rarely">Rarely</option>
-            <option value="sometimes">Sometimes</option>
-            <option value="frequently">Frequently</option>
-            <option value="always">Always</option>
-        </select>
+                    <div class="assessment-progress-bar-container">
+                        <div class="assessment-progress-bar" id="assessmentProgress"></div>
+                    </div>
+                </div>
 
-        <label for="socialInteraction">Social Interaction:</label>
-        <select id="socialInteraction">
-            <option value="often">Often</option>
-            <option value="sometimes">Sometimes</option>
-            <option value="rarely">Rarely</option>
-            <option value="never">Never</option>
-        </select>
+                <!-- Form Body -->
+                <div class="assessment-body">
+                    <form id="healthForm">
 
-        <label for="diet">Diet:</label>
-        <select id="diet">
-            <option value="good">Good</option>
-            <option value="average">Average</option>
-            <option value="poor">Poor</option>
-        </select>
+                        <!-- Question 1: Mood -->
+                        <div class="assessment-card-group">
+                            <div class="question-number">Question 1 of 10</div>
+                            <div class="question-title">How would you describe your baseline mood over the past week?</div>
+                            <div class="question-desc">Select the option that best reflects your emotional state.</div>
+                            
+                            <div class="option-cards-grid">
+                                <label class="option-card-label" onclick="selectRadio('mood', 'happy', this)">
+                                    <input type="radio" name="mood" value="happy" required>
+                                    <span class="option-card-icon">😄</span>
+                                    <span class="option-card-text">Joyful & Flourishing</span>
+                                </label>
+                                <label class="option-card-label" onclick="selectRadio('mood', 'neutral', this)">
+                                    <input type="radio" name="mood" value="neutral">
+                                    <span class="option-card-icon">😐</span>
+                                    <span class="option-card-text">Even & Neutral</span>
+                                </label>
+                                <label class="option-card-label" onclick="selectRadio('mood', 'sad', this)">
+                                    <input type="radio" name="mood" value="sad">
+                                    <span class="option-card-icon">🌧️</span>
+                                    <span class="option-card-text">Heavy or Melancholy</span>
+                                </label>
+                                <label class="option-card-label" onclick="selectRadio('mood', 'anxious', this)">
+                                    <input type="radio" name="mood" value="anxious">
+                                    <span class="option-card-icon">😰</span>
+                                    <span class="option-card-text">Restless or Anxious</span>
+                                </label>
+                            </div>
+                        </div>
 
-        <label for="focus">Focus Difficulty:</label>
-        <select id="focus">
-            <option value="never">Never</option>
-            <option value="rarely">Rarely</option>
-            <option value="often">Often</option>
-            <option value="always">Always</option>
-        </select>
+                        <!-- Question 2: Stress Level Slider -->
+                        <div class="assessment-card-group">
+                            <div class="question-number">Question 2 of 10</div>
+                            <div class="question-title">Rate your average stress level (1 = Serene, 10 = Overwhelming):</div>
+                            <div class="question-desc">Consider work, academics, relationships, and financial demands.</div>
 
-        <label for="motivation">Motivation:</label>
-        <select id="motivation">
-            <option value="motivated">Motivated</option>
-            <option value="not_motivated">Not Motivated</option>
-        </select>
+                            <div class="slider-container">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <span style="font-size: 0.9rem; font-weight: 600; color: var(--slate-700);">Current Stress:</span>
+                                    <span class="slider-val-badge" id="stressBadge">5 / 10 - Moderate</span>
+                                </div>
+                                <input type="range" id="stressLevel" class="custom-range-slider" min="1" max="10" value="5" oninput="updateStressBadge(this.value)">
+                                <div class="slider-labels">
+                                    <span>1 (Very Calm)</span>
+                                    <span>5 (Manageable Tension)</span>
+                                    <span>10 (Extreme Crisis)</span>
+                                </div>
+                            </div>
+                        </div>
 
-        <label for="wellBeing">Overall Well-Being (1-10):</label>
-        <input type="number" id="wellBeing" min="1" max="10" required>
+                        <!-- Question 3: Sleep Quality -->
+                        <div class="assessment-card-group">
+                            <div class="question-number">Question 3 of 10</div>
+                            <div class="question-title">How restorative has your sleep been?</div>
+                            <div class="question-desc">Based on sleep duration (7-9 hours), ease of falling asleep, and wakeful energy.</div>
 
-        <button type="submit">Submit</button>
-    </form>
+                            <div class="option-cards-grid">
+                                <label class="option-card-label" onclick="selectRadio('sleepQuality', 'good', this)">
+                                    <input type="radio" name="sleepQuality" value="good" required>
+                                    <span class="option-card-icon">😴</span>
+                                    <span class="option-card-text">Deep & Restorative (7-9h)</span>
+                                </label>
+                                <label class="option-card-label" onclick="selectRadio('sleepQuality', 'average', this)">
+                                    <input type="radio" name="sleepQuality" value="average">
+                                    <span class="option-card-icon">🥱</span>
+                                    <span class="option-card-text">Average / Occasional Waking</span>
+                                </label>
+                                <label class="option-card-label" onclick="selectRadio('sleepQuality', 'poor', this)">
+                                    <input type="radio" name="sleepQuality" value="poor">
+                                    <span class="option-card-icon">😫</span>
+                                    <span class="option-card-text">Fragmented / Insomnia (&lt;6h)</span>
+                                </label>
+                            </div>
+                        </div>
 
-    <div id="results"></div>
-</div>
-<script src="script.js"></script>
+                        <!-- Question 4: Exercise -->
+                        <div class="assessment-card-group">
+                            <div class="question-number">Question 4 of 10</div>
+                            <div class="question-title">Do you engage in regular physical exercise or active movement?</div>
+                            <div class="question-desc">Includes brisk walking, cycling, sports, yoga, or workouts (at least 20 mins).</div>
 
+                            <div class="option-cards-grid">
+                                <label class="option-card-label" onclick="selectRadio('exercise', 'yes', this)">
+                                    <input type="radio" name="exercise" value="yes" required>
+                                    <span class="option-card-icon">🏃‍♂️</span>
+                                    <span class="option-card-text">Yes, 3+ times weekly</span>
+                                </label>
+                                <label class="option-card-label" onclick="selectRadio('exercise', 'moderate', this)">
+                                    <input type="radio" name="exercise" value="moderate">
+                                    <span class="option-card-icon">🚶</span>
+                                    <span class="option-card-text">Light or 1-2 times weekly</span>
+                                </label>
+                                <label class="option-card-label" onclick="selectRadio('exercise', 'no', this)">
+                                    <input type="radio" name="exercise" value="no">
+                                    <span class="option-card-icon">🛋️</span>
+                                    <span class="option-card-text">Rarely or Sedentary</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Question 5: Anxiety Level -->
+                        <div class="assessment-card-group">
+                            <div class="question-number">Question 5 of 10</div>
+                            <div class="question-title">How often do you experience intrusive worry or nervous tension?</div>
+                            <div class="question-desc">Such as heart palpitations, racing thoughts, or fear of worst-case scenarios.</div>
+
+                            <div class="option-cards-grid">
+                                <label class="option-card-label" onclick="selectRadio('anxietyLevel', 'rarely', this)">
+                                    <input type="radio" name="anxietyLevel" value="rarely" required>
+                                    <span class="option-card-icon">🌿</span>
+                                    <span class="option-card-text">Rarely or Never</span>
+                                </label>
+                                <label class="option-card-label" onclick="selectRadio('anxietyLevel', 'sometimes', this)">
+                                    <input type="radio" name="anxietyLevel" value="sometimes">
+                                    <span class="option-card-icon">⛅</span>
+                                    <span class="option-card-text">Sometimes (Situational)</span>
+                                </label>
+                                <label class="option-card-label" onclick="selectRadio('anxietyLevel', 'frequently', this)">
+                                    <input type="radio" name="anxietyLevel" value="frequently">
+                                    <span class="option-card-icon">🌧️</span>
+                                    <span class="option-card-text">Frequently</span>
+                                </label>
+                                <label class="option-card-label" onclick="selectRadio('anxietyLevel', 'always', this)">
+                                    <input type="radio" name="anxietyLevel" value="always">
+                                    <span class="option-card-icon">🌪️</span>
+                                    <span class="option-card-text">Almost Constantly</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Question 6: Social Interaction -->
+                        <div class="assessment-card-group">
+                            <div class="question-number">Question 6 of 10</div>
+                            <div class="question-title">How frequently do you connect meaningfully with friends, family, or community?</div>
+                            <div class="question-desc">Meaningful conversations where you feel seen, heard, and supported.</div>
+
+                            <div class="option-cards-grid">
+                                <label class="option-card-label" onclick="selectRadio('socialInteraction', 'often', this)">
+                                    <input type="radio" name="socialInteraction" value="often" required>
+                                    <span class="option-card-icon">👥</span>
+                                    <span class="option-card-text">Often & Supportive</span>
+                                </label>
+                                <label class="option-card-label" onclick="selectRadio('socialInteraction', 'sometimes', this)">
+                                    <input type="radio" name="socialInteraction" value="sometimes">
+                                    <span class="option-card-icon">🤝</span>
+                                    <span class="option-card-text">Occasionally</span>
+                                </label>
+                                <label class="option-card-label" onclick="selectRadio('socialInteraction', 'rarely', this)">
+                                    <input type="radio" name="socialInteraction" value="rarely">
+                                    <span class="option-card-icon">🧍</span>
+                                    <span class="option-card-text">Rarely</span>
+                                </label>
+                                <label class="option-card-label" onclick="selectRadio('socialInteraction', 'never', this)">
+                                    <input type="radio" name="socialInteraction" value="never">
+                                    <span class="option-card-icon">🔒</span>
+                                    <span class="option-card-text">Feeling Isolated</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Question 7: Diet & Hydration -->
+                        <div class="assessment-card-group">
+                            <div class="question-number">Question 7 of 10</div>
+                            <div class="question-title">How would you describe your nutritional balance and hydration?</div>
+                            <div class="question-desc">Whole foods, vegetables, lean proteins, and adequate water intake.</div>
+
+                            <div class="option-cards-grid">
+                                <label class="option-card-label" onclick="selectRadio('diet', 'good', this)">
+                                    <input type="radio" name="diet" value="good" required>
+                                    <span class="option-card-icon">🥗</span>
+                                    <span class="option-card-text">Nourishing & Balanced</span>
+                                </label>
+                                <label class="option-card-label" onclick="selectRadio('diet', 'average', this)">
+                                    <input type="radio" name="diet" value="average">
+                                    <span class="option-card-icon">🥪</span>
+                                    <span class="option-card-text">Average / Mixed Quality</span>
+                                </label>
+                                <label class="option-card-label" onclick="selectRadio('diet', 'poor', this)">
+                                    <input type="radio" name="diet" value="poor">
+                                    <span class="option-card-icon">🍟</span>
+                                    <span class="option-card-text">Processed / Skipped Meals</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Question 8: Focus Difficulty -->
+                        <div class="assessment-card-group">
+                            <div class="question-number">Question 8 of 10</div>
+                            <div class="question-title">Do you struggle with brain fog, distracted thinking, or finishing tasks?</div>
+                            <div class="question-desc">Ability to sustain attention during work, study, or daily conversations.</div>
+
+                            <div class="option-cards-grid">
+                                <label class="option-card-label" onclick="selectRadio('focus', 'never', this)">
+                                    <input type="radio" name="focus" value="never" required>
+                                    <span class="option-card-icon">🎯</span>
+                                    <span class="option-card-text">Clear & Focused</span>
+                                </label>
+                                <label class="option-card-label" onclick="selectRadio('focus', 'rarely', this)">
+                                    <input type="radio" name="focus" value="rarely">
+                                    <span class="option-card-icon">🔍</span>
+                                    <span class="option-card-text">Occasional Distraction</span>
+                                </label>
+                                <label class="option-card-label" onclick="selectRadio('focus', 'often', this)">
+                                    <input type="radio" name="focus" value="often">
+                                    <span class="option-card-icon">🌫️</span>
+                                    <span class="option-card-text">Frequent Brain Fog</span>
+                                </label>
+                                <label class="option-card-label" onclick="selectRadio('focus', 'always', this)">
+                                    <input type="radio" name="focus" value="always">
+                                    <span class="option-card-icon">🌀</span>
+                                    <span class="option-card-text">Severe Attention Paralysis</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Question 9: Daily Motivation -->
+                        <div class="assessment-card-group">
+                            <div class="question-number">Question 9 of 10</div>
+                            <div class="question-title">How do you feel about waking up and pursuing your daily goals?</div>
+                            <div class="question-desc">Sense of purpose, enthusiasm, and energy towards your routine.</div>
+
+                            <div class="option-cards-grid">
+                                <label class="option-card-label" onclick="selectRadio('motivation', 'motivated', this)">
+                                    <input type="radio" name="motivation" value="motivated" required>
+                                    <span class="option-card-icon">🔥</span>
+                                    <span class="option-card-text">Motivated & Driven</span>
+                                </label>
+                                <label class="option-card-label" onclick="selectRadio('motivation', 'moderate', this)">
+                                    <input type="radio" name="motivation" value="moderate">
+                                    <span class="option-card-icon">⚡</span>
+                                    <span class="option-card-text">Moderate / Steady</span>
+                                </label>
+                                <label class="option-card-label" onclick="selectRadio('motivation', 'not_motivated', this)">
+                                    <input type="radio" name="motivation" value="not_motivated">
+                                    <span class="option-card-icon">🕯️</span>
+                                    <span class="option-card-text">Apathetic / Struggling</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Question 10: Overall Well-Being Scale -->
+                        <div class="assessment-card-group">
+                            <div class="question-number">Question 10 of 10</div>
+                            <div class="question-title">Overall, rate your holistic sense of well-being (1 = Very Low, 10 = Optimal Flourishing):</div>
+                            <div class="question-desc">Your overall happiness, fulfillment, and emotional security.</div>
+
+                            <div class="slider-container">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <span style="font-size: 0.9rem; font-weight: 600; color: var(--slate-700);">Well-Being Rating:</span>
+                                    <span class="slider-val-badge" id="wellBeingBadge" style="background: var(--accent-emerald-soft); color: var(--accent-emerald);">7 / 10 - Balanced</span>
+                                </div>
+                                <input type="range" id="wellBeing" class="custom-range-slider" min="1" max="10" value="7" oninput="updateWellBeingBadge(this.value)">
+                                <div class="slider-labels">
+                                    <span>1 (Severe Distress)</span>
+                                    <span>5 (Average)</span>
+                                    <span>10 (Optimal Vitality)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div style="text-align: center; margin-top: 36px;">
+                            <button type="submit" class="btn btn-primary btn-lg" style="min-width: 280px;">
+                                <span>📊</span> Generate My Wellness Snapshot
+                            </button>
+                            <p style="font-size: 0.8rem; color: var(--slate-500); margin-top: 10px;">Results are calculated immediately and stored privately on your device.</p>
+                        </div>
+                    </form>
+
+                    <!-- Results Presentation Card (Revealed on submission) -->
+                    <div id="results" class="assessment-results-card">
+                        <div class="results-banner">
+                            <div class="results-score-badge">
+                                <span class="results-score-num" id="resScoreNum">--</span>
+                                <span class="results-score-max">OUT OF 100</span>
+                            </div>
+                            <h2 class="results-status-title" id="resStatusTitle">Evaluating...</h2>
+                            <p class="results-summary-text" id="resSummaryText">Your comprehensive snapshot breakdown.</p>
+                        </div>
+
+                        <!-- Breakdown Grid -->
+                        <div class="results-breakdown-grid">
+                            <div class="breakdown-card">
+                                <h4><span>🧠</span> Emotional Resilience</h4>
+                                <p id="resEmotionalText" style="font-size: 0.88rem; color: var(--slate-600); margin: 0;"></p>
+                            </div>
+                            <div class="breakdown-card">
+                                <h4><span>😴</span> Sleep & Circadian Balance</h4>
+                                <p id="resSleepText" style="font-size: 0.88rem; color: var(--slate-600); margin: 0;"></p>
+                            </div>
+                            <div class="breakdown-card">
+                                <h4><span>⚡</span> Stress & Cognitive Clarity</h4>
+                                <p id="resStressText" style="font-size: 0.88rem; color: var(--slate-600); margin: 0;"></p>
+                            </div>
+                            <div class="breakdown-card">
+                                <h4><span>🌱</span> Lifestyle & Social Anchors</h4>
+                                <p id="resLifestyleText" style="font-size: 0.88rem; color: var(--slate-600); margin: 0;"></p>
+                            </div>
+                        </div>
+
+                        <!-- Action Tips -->
+                        <div class="results-actions-list">
+                            <h3 style="font-size: 1.25rem; color: var(--slate-900); margin-bottom: 14px;">Your Personalized Coping Plan 💡</h3>
+                            <div id="resActionTips"></div>
+                        </div>
+
+                        <!-- Actions Footer -->
+                        <div style="background: var(--slate-50); padding: 24px 30px; border-top: 1px solid var(--slate-200); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+                            <button class="btn btn-outline btn-sm" onclick="window.print()">
+                                <span>🖨️</span> Print / Save Report
+                            </button>
+                            <div style="display: flex; gap: 10px;">
+                                <button class="btn btn-secondary btn-sm" onclick="saveToProfileDashboard()">
+                                    <span>💾</span> Save to My Profile
+                                </button>
+                                <a href="index.html#breathing" class="btn btn-primary btn-sm">
+                                    <span>🫁</span> Try Guided Breathing
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-bottom" style="border: none; padding: 0;">
+                <div>© 2026 Mental Health and Well-Being. Private, secure, and confidential.</div>
+                <div><a href="home.html" style="color: var(--primary-300);">Return to Home</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Emergency Modal -->
+    <div class="modal-overlay" id="crisisModal" onclick="if(event.target===this) closeCrisisModal()">
+        <div class="modal-container">
+            <div class="modal-header" style="background: var(--accent-rose-soft);">
+                <h3 style="color: #9f1239; margin: 0;">🚨 24/7 Immediate Crisis Support</h3>
+                <button class="modal-close-btn" onclick="closeCrisisModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <p>Call or text <strong>988</strong> (USA/Canada) or call <strong>14416</strong> (Tele-MANAS, India) for free, immediate support.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="app.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

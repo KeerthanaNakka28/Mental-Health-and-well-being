@@ -3,111 +3,187 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Registration</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-image: url('logo5.png');
-            background-size: 100% auto;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-position: center;
-            text-align: center;
-            padding: 50px;
-            margin: 0;
-        }
-        .registration-container {
-            width: 400px;
-            margin: 100px auto;
-            background: linear-gradient(135deg, #e0f7fa, #b2ebf2);
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-            border: 1px solid #81d4fa;
-        }
-        input, select {
-            width: calc(100% - 16px);
-            padding: 14px;
-            margin-top: 20px;
-            border: 1px solid #81d4fa;
-            border-radius: 8px;
-            box-sizing: border-box;
-            font-size: 16px;
-        }
-        button {
-            background-color: #29b6f6;
-            color: white;
-            border: none;
-            padding: 14px 25px;
-            cursor: pointer;
-            margin-top: 25px;
-            border-radius: 8px;
-            font-size: 18px;
-            transition: background-color 0.3s ease;
-        }
-        button:hover {
-            background-color: #03a9f4;
-        }
-    </style>
+    <meta name="description" content="Create your free Mental Health and Well-Being account to save assessment scores and track daily self-care habits.">
+    <title>Create Free Account | Mental Health and Well-Being</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="logo2.jpeg" type="image/jpeg">
 </head>
-<body>
+<body style="background-color: #f1f5f9;">
 
-    <div class="registration-container">
-        <h2>User Registration</h2>
-        <form onsubmit="register(event)">
-            <input type="text" id="username" placeholder="Enter Username" required>
-            <input type="email" id="email" placeholder="Enter Email" required>
-            <input type="password" id="password" placeholder="Enter Password" required>
+    <!-- Top Navigation Bar -->
+    <header class="site-header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="home.html" class="brand-logo">
+                    <img src="logo2.jpeg" alt="Mental Health and Well-Being Logo">
+                    <div class="brand-text">
+                        <span class="brand-title">Mental Health and Well-Being</span>
+                        <span class="brand-subtitle">Your Daily Self-Care Portal</span>
+                    </div>
+                </a>
+                <div class="header-actions">
+                    <a href="home.html" class="btn btn-outline btn-sm">← Back to Home</a>
+                </div>
+            </nav>
+        </div>
+    </header>
 
-            <!-- Country code dropdown -->
-            <select id="countryCode" required>
-                <option value="">Select Country Code</option>
-                <option value="+1">+1 (USA)</option>
-                <option value="+44">+44 (UK)</option>
-                <option value="+91">+91 (India)</option>
-                <option value="+61">+61 (Australia)</option>
-                <option value="+81">+81 (Japan)</option>
-                <option value="+33">+33 (France)</option>
-                <!-- Add more country codes as needed -->
-            </select>
+    <!-- Split Screen Auth Section -->
+    <main class="auth-page">
+        <div class="auth-split-wrapper">
+            <!-- Visual Left Side -->
+            <div class="auth-visual-side">
+                <div class="auth-visual-content">
+                    <span class="section-tag" style="background: rgba(255,255,255,0.25); color: white; border-color: rgba(255,255,255,0.3); margin-bottom: 12px;">Get Started</span>
+                    <h2>Start Your Wellness Journey</h2>
+                    <p>Create an account to track your daily feelings, take simple self-checks, and learn easy everyday habits for a happier, calmer life.</p>
+                </div>
 
-            <input type="tel" id="phone" placeholder="Enter Phone Number" required>
-            <button type="submit">Register</button>
-        </form>
-    </div>
+                <div class="auth-quote-box">
+                    <p style="font-style: italic; margin-bottom: 6px; font-size: 0.95rem;">"Every day is a fresh beginning. Take a deep breath and start gently."</p>
+                    <span style="font-size: 0.8rem; color: var(--primary-200); font-weight: 600;">— Daily Encouragement</span>
+                </div>
+            </div>
 
+            <!-- Form Right Side -->
+            <div class="auth-form-side">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <img src="logo2.jpeg" alt="Logo" style="width: 38px; height: 38px; border-radius: 10px;">
+                    <span style="font-weight: 800; font-size: 1.15rem; color: var(--slate-900);">Mental Health and Well-Being</span>
+                </div>
+
+                <h2>Create Your Free Account</h2>
+                <p class="subtitle">100% free, private, and confidential wellness portal.</p>
+
+                <form onsubmit="handleRegister(event)">
+                    <div class="form-group">
+                        <label class="form-label" for="regUsername">Choose Username</label>
+                        <input type="text" id="regUsername" class="form-input" placeholder="e.g. barath_well" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="regEmail">Email Address</label>
+                        <input type="email" id="regEmail" class="form-input" placeholder="e.g. name@example.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="regPassword">Create Password</label>
+                        <div class="password-input-wrapper">
+                            <input type="password" id="regPassword" class="form-input" placeholder="At least 6 characters" required oninput="checkPasswordStrength(this.value)">
+                            <button type="button" class="password-toggle-btn" onclick="togglePasswordVisibility('regPassword', this)">👁️</button>
+                        </div>
+                        <div id="passwordStrengthIndicator" style="margin-top: 6px; font-size: 0.75rem; color: var(--slate-400); font-weight: 600;"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Contact Phone Number</label>
+                        <div style="display: flex; gap: 10px;">
+                            <select id="regCountryCode" class="form-select" style="width: 140px; flex-shrink: 0;" required>
+                                <option value="+91">🇮🇳 +91 (IN)</option>
+                                <option value="+1">🇺🇸 +1 (US)</option>
+                                <option value="+44">🇬🇧 +44 (UK)</option>
+                                <option value="+61">🇦🇺 +61 (AU)</option>
+                                <option value="+81">🇯🇵 +81 (JP)</option>
+                                <option value="+33">🇫🇷 +33 (FR)</option>
+                                <option value="+49">🇩🇪 +49 (DE)</option>
+                                <option value="+971">🇦🇪 +971 (UAE)</option>
+                            </select>
+                            <input type="tel" id="regPhone" class="form-input" placeholder="Mobile number" required>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: flex; align-items: flex-start; gap: 8px; font-size: 0.82rem; color: var(--slate-600); cursor: pointer;">
+                            <input type="checkbox" id="termsAgree" required checked style="margin-top: 3px;">
+                            <span>I agree to the <a href="#" onclick="showToast('Your privacy is strictly safeguarded. Data is kept locally.', 'info'); return false;">Confidentiality & Well-Being Terms</a>.</span>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
+                        <span>✨</span> Complete Registration
+                    </button>
+                </form>
+
+                <p style="text-align: center; margin-top: 24px; font-size: 0.88rem; color: var(--slate-600);">
+                    Already have an account? 
+                    <a href="login.html" style="font-weight: 700; color: var(--primary-700);">Sign In here →</a>
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Toast container -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <script src="app.js"></script>
     <script>
-        function register(event) {
+        function togglePasswordVisibility(inputId, btn) {
+            const input = document.getElementById(inputId);
+            if (input.type === 'password') {
+                input.type = 'text';
+                btn.innerText = '🙈';
+            } else {
+                input.type = 'password';
+                btn.innerText = '👁️';
+            }
+        }
+
+        function checkPasswordStrength(val) {
+            const ind = document.getElementById('passwordStrengthIndicator');
+            if (!val) {
+                ind.innerText = '';
+                return;
+            }
+            if (val.length < 6) {
+                ind.innerText = 'Weak: Must be at least 6 characters';
+                ind.style.color = '#ef4444';
+            } else if (val.length < 9) {
+                ind.innerText = 'Moderate strength';
+                ind.style.color = '#f59e0b';
+            } else {
+                ind.innerText = 'Strong password ✅';
+                ind.style.color = '#10b981';
+            }
+        }
+
+        function handleRegister(event) {
             event.preventDefault();
 
-            const username = document.getElementById("username").value;
-            const email = document.getElementById("email").value;
-            const password = document.getElementById("password").value;
-            const countryCode = document.getElementById("countryCode").value;
-            const phone = document.getElementById("phone").value;
+            const username = document.getElementById("regUsername").value.trim();
+            const email = document.getElementById("regEmail").value.trim();
+            const password = document.getElementById("regPassword").value;
+            const countryCode = document.getElementById("regCountryCode").value;
+            const phone = document.getElementById("regPhone").value.trim();
 
-            if (!countryCode) {
-                alert("Please select a country code.");
+            if (password.length < 6) {
+                showToast("Password must be at least 6 characters long.", "error");
                 return;
             }
 
-            // Create the user object
-            const user = {
+            // Check if user already exists
+            if (localStorage.getItem(`user_${username}`)) {
+                showToast("Username already exists! Please choose another or Sign In.", "error");
+                return;
+            }
+
+            // Create user
+            const newUser = {
                 username: username,
                 email: email,
                 password: password,
-                phone: `${countryCode} ${phone}` // Combine country code with phone number
+                phone: `${countryCode} ${phone}`,
+                createdAt: new Date().toLocaleDateString()
             };
 
-            // Store the user in localStorage
-            localStorage.setItem(`user_${username}`, JSON.stringify(user));
+            // Save to localStorage
+            localStorage.setItem(`user_${username}`, JSON.stringify(newUser));
+            localStorage.setItem("loggedInUser", JSON.stringify(newUser));
 
-            alert("Registration successful! You can now log in.");
-
-            // Redirect to the login page after successful registration
-            window.location.href = "login.html";
+            showToast("Registration successful! Welcome to Serenity.", "success");
+            setTimeout(() => {
+                window.location.href = "profile.html";
+            }, 1000);
         }
     </script>
-
 </body>
 </html>

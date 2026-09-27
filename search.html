@@ -3,57 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search Results</title>
+    <meta name="description" content="Search through Mental Health and Well-Being guides. Find simple, helpful advice on stress, anxiety, sleep, food, mood, and focus.">
+    <title>Search Topics | Mental Health and Well-Being</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        body {
-            background-image: url('logo5.png'); 
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            margin: 0;
-            padding: 0;
-        }
-
-        #searchResults {
-            padding: 20px;
-            background-color: rgba(255, 255, 255, 0.8); 
-            border-radius: 10px;
-            max-width: 900px;
-            margin: 20px auto;
-            text-align: left;
-            color: #333;
-        }
-
-        #searchResults h2 {
-            color: #007bff;
-            text-align: center;
-        }
-
-        #resultsContainer {
-            color: #000; 
-        }
-
-        .search-result-item {
-            border-bottom: 1px solid #ccc;
-            padding: 10px 0;
-        }
-
-        .search-result-item a {
-            color: #007bff;
-            text-decoration: none;
-        }
-
-        .search-result-item a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    <link rel="shortcut icon" href="logo2.jpeg" type="image/jpeg">
 </head>
 <body>
-    <div id="searchResults">
-        <h2>Search Results</h2>
-        <div id="resultsContainer"></div>
+
+    <!-- Header Navigation -->
+    <header class="site-header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="home.html" class="brand-logo">
+                    <img src="logo2.jpeg" alt="Mental Health and Well-Being Logo">
+                    <div class="brand-text">
+                        <span class="brand-title">Mental Health and Well-Being</span>
+                        <span class="brand-subtitle">Your Daily Self-Care Portal</span>
+                    </div>
+                </a>
+
+                <ul class="nav-links">
+                    <li><a href="home.html" class="nav-link">Home</a></li>
+                    <li><a href="form.html" class="nav-link nav-highlight">📋 Assessment</a></li>
+                    <li><a href="home.html#topics" class="nav-link">Topics</a></li>
+                    <li><a href="home.html#breathing" class="nav-link">Breathing Exercise</a></li>
+                    <li><a href="profile.html" class="nav-link">My Dashboard</a></li>
+                </ul>
+
+                <div class="header-actions">
+                    <button class="btn-sos" onclick="openCrisisModal()">
+                        <span>🚨</span> 24/7 Helpline
+                    </button>
+                    <a href="home.html" class="btn btn-outline btn-sm">← Back to Home</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Search Main Page -->
+    <main class="search-page">
+        <div class="container">
+
+            <!-- Search Hub Header -->
+            <div class="search-hub-header">
+                <span class="section-tag">Helpful Topic Library</span>
+                <h1 style="font-size: 2.2rem; color: var(--slate-900); margin: 8px 0 16px;">What would you like help with today?</h1>
+                <p style="color: var(--slate-600); max-width: 620px; margin: 0 auto 24px; font-size: 1.05rem;">
+                    Search simple, friendly guides on how to reduce stress, sleep peacefully, eat healthy foods, and feel happier every day.
+                </p>
+
+                <!-- Search Input Form -->
+                <div style="max-width: 680px; margin: 0 auto; display: flex; gap: 10px;">
+                    <div style="flex: 1; position: relative;">
+                        <input type="text" id="searchInput" class="form-input" placeholder="Type a keyword (e.g. stress, sleep, anxiety, focus, grief)..." style="padding-left: 42px; font-size: 1.05rem; border-radius: var(--radius-full);" onkeydown="if(event.key==='Enter') executeSearch()">
+                        <span style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); font-size: 1.2rem; color: var(--slate-400);">🔍</span>
+                    </div>
+                    <button class="btn btn-primary" onclick="executeSearch()" style="padding: 12px 28px;">Search</button>
+                </div>
+
+                <!-- Filter Chips -->
+                <div class="search-filter-pills" id="filterPillsContainer">
+                    <button class="filter-pill active" onclick="filterByTopic('all', this)">✨ All Topics</button>
+                    <button class="filter-pill" onclick="filterByTopic('stress', this)">🌿 Stress</button>
+                    <button class="filter-pill" onclick="filterByTopic('anxiety', this)">🌊 Anxiety</button>
+                    <button class="filter-pill" onclick="filterByTopic('sleep', this)">😴 Sleep</button>
+                    <button class="filter-pill" onclick="filterByTopic('diet', this)">🥑 Nutrition</button>
+                    <button class="filter-pill" onclick="filterByTopic('mood swings', this)">❤️ Mood Swings</button>
+                    <button class="filter-pill" onclick="filterByTopic('overwhelming sadness', this)">🌧️ Sadness & Grief</button>
+                    <button class="filter-pill" onclick="filterByTopic('focus', this)">⚡ Deep Focus</button>
+                    <button class="filter-pill" onclick="filterByTopic('exercise', this)">🏃‍♂️ Exercise</button>
+                    <button class="filter-pill" onclick="filterByTopic('hyperactivity', this)">🌀 Hyperactivity</button>
+                    <button class="filter-pill" onclick="filterByTopic('anger', this)">🔥 Anger</button>
+                    <button class="filter-pill" onclick="filterByTopic('social interaction', this)">👥 Social Ties</button>
+                    <button class="filter-pill" onclick="filterByTopic('confused thinking', this)">🌫️ Mental Clarity</button>
+                    <button class="filter-pill" onclick="filterByTopic('changes in performance', this)">📈 Performance</button>
+                </div>
+            </div>
+
+            <!-- Results Summary Banner -->
+            <div id="resultsCountBanner" style="margin-bottom: 24px; font-size: 0.95rem; color: var(--slate-600); display: flex; justify-content: space-between; align-items: center;">
+                <span id="resultsCountText">Showing wellness guides...</span>
+                <span style="font-size: 0.85rem; color: var(--slate-400);">Reviewed by Lifestyle Psychiatry Team</span>
+            </div>
+
+            <!-- Search Results Content Container -->
+            <div class="search-results-wrapper" id="resultsContainer"></div>
+
+            <!-- Bottom CTA Banner -->
+            <div style="margin-top: 48px; background: linear-gradient(135deg, var(--primary-800), var(--primary-700)); color: white; border-radius: var(--radius-xl); padding: 36px; text-align: center;">
+                <h3 style="color: white; font-size: 1.6rem; margin-bottom: 8px;">Want to evaluate your personal well-being?</h3>
+                <p style="color: var(--primary-100); max-width: 580px; margin: 0 auto 20px;">Take our confidential 2-minute clinical screening test to see where your stress and recovery levels stand.</p>
+                <a href="form.html" class="btn btn-secondary btn-lg">Take Free Assessment Test →</a>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-bottom" style="border: none; padding: 0;">
+                <div>© 2026 Serenity Mental Health & Well-Being. Curated clinical educational repository.</div>
+                <div><a href="index.html" style="color: var(--primary-300);">Return to Home Sanctuary</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Emergency Modal -->
+    <div class="modal-overlay" id="crisisModal" onclick="if(event.target===this) closeCrisisModal()">
+        <div class="modal-container">
+            <div class="modal-header" style="background: var(--accent-rose-soft);">
+                <h3 style="color: #9f1239; margin: 0;">🚨 24/7 Immediate Crisis Support</h3>
+                <button class="modal-close-btn" onclick="closeCrisisModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <p>Call or text <strong>988</strong> (USA/Canada) or call <strong>14416</strong> (Tele-MANAS, India) for free, immediate support.</p>
+            </div>
+        </div>
     </div>
+
+    <!-- Toast container -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <script src="app.js"></script>
     <script src="search.js"></script>
 </body>
 </html>

@@ -3,322 +3,820 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Website</title>
+    <meta name="description" content="Mental Health and Well-Being - A friendly, supportive guide for everyday mental wellness, stress relief, healthy sleep, and 24/7 helpline support.">
+    <title>Mental Health and Well-Being</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: url('Designer.jpeg') no-repeat center center fixed;
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            position: relative;
-        }
-        .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.4);
-            z-index: 1;
-        }
-        .navbar {
-            position: relative;
-            z-index: 2;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background-color: #004d40; /* Dark teal background */
-            padding: 10px 30px;
-            color: white;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-            border-radius: 30px; /* Rounded corners */
-            margin: 20px; /* Add space from the edges */
-            transition: background-color 0.3s ease-in-out;
-        }
-        .navbar:hover {
-            background-color: #00695c; /* Lighter teal on hover */
-        }
-        .logo {
-            display: flex;
-            align-items: center;
-        }
-        .logo img {
-            width: 40px;
-            height: 40px;
-            margin-right: 10px;
-        }
-        .logo h1 {
-            margin: 0;
-            font-size: 24px;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-        .nav-links {
-            display: flex;
-            gap: 20px;
-        }
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            padding: 10px 15px;
-            border-radius: 30px; /* Rounded links */
-            font-size: 16px;
-            font-weight: 500;
-            transition: background 0.3s ease-in-out;
-        }
-        .nav-links a:hover {
-            background-color: #00796b; /* Slightly lighter teal */
-            transform: scale(1.05); /* Hover effect scale */
-        }
-        .search-language {
-            display: flex;
-            align-items: center;
-            gap: 10px; /* Adds space between search bar, button, and language select */
-        }
-        .search-box {
-            padding: 10px;
-            border-radius: 20px; /* Rounded search box */
-            border: 1px solid #ccc;
-            outline: none;
-            background-color: #e0f2f1; /* Light cyan background */
-            color: #004d40; /* Dark teal text */
-        }
-        .search-box:focus {
-            border-color: #00796b; /* Lighter teal on focus */
-        }
-        .btn {
-            padding: 10px 20px;
-            border-radius: 20px; /* Rounded button */
-            background-color: #00796b; /* Lighter teal */
-            color: white;
-            text-decoration: none;
-            border: none;
-            cursor: pointer;
-            transition: background 0.3s ease-in-out;
-        }
-        .btn:hover {
-            background-color: #004d40; /* Dark teal on hover */
-        }
-        .language-select {
-            padding: 8px;
-            border-radius: 20px; /* Rounded select box */
-            border: 1px solid #ccc;
-            background-color: #e0f2f1; /* Light cyan background */
-            color: #004d40; /* Dark teal text */
-        }
-        .auth-buttons .btn {
-            background-color: #ed5ee8;
-            padding: 10px 15px;
-            border-radius: 30px; /* Rounded button */
-            color: white;
-            text-decoration: none;
-            margin-left: 5px;
-            transition: background 0.3s ease;
-        }
-        .auth-buttons .btn:hover {
-            background-color: #ed4949;
-        }
-        .profile-container {
-            position: relative;
-            display: none;
-        }
-        .profile-btn {
-            background-color: #b46ef1;
-            padding: 10px 15px;
-            border-radius: 30px; /* Rounded button */
-            color: white;
-            text-decoration: none;
-            cursor: pointer;
-            border: none;
-        }
-        .profile-dropdown {
-            display: none;
-            position: absolute;
-            right: 0;
-            top: 40px;
-            background: white;
-            color: black;
-            padding: 15px;
-            border-radius: 15px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            width: 250px;
-            text-align: left;
-        }
-        .profile-dropdown p {
-            margin: 5px 0;
-        }
-        .profile-dropdown button {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 5px;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 8px;
-        }
-        .logout-btn {
-            background-color: red !important;
-        }
-
-        /* Mental Health Section Styles */
-        .mental-health-section {
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.7); /* Transparent background */
-            border-radius: 10px;
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
-            margin-top: 0;
-            text-align: left;
-            color: #333;
-        }
-        .mental-health-section h2 {
-            color: #007bff;
-            text-align: center;
-        }
-        .mental-health-section p {
-            font-size: 18px;
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
-        .mental-health-section ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        .mental-health-section ul li {
-            background: #e6f2ff;
-            padding: 10px;
-            margin: 8px 0;
-            border-left: 5px solid #007bff;
-            font-size: 16px;
-        }
-        .hidden-section {
-            display: none;
-        }
-    </style>
+    <link rel="shortcut icon" href="logo2.jpeg" type="image/jpeg">
 </head>
 <body>
-    <div class="overlay"></div>
-    <nav class="navbar">
-        <div class="logo">
-            <img src="logo2.jpeg" alt="Logo">
-            <h1>Mental Health And Well-Being</h1>
+
+    <!-- ==================== HEADER & TOP NAVIGATION BAR ==================== -->
+    <header class="site-header">
+        <div class="container">
+            <nav class="navbar">
+                <!-- Brand Logo & Name -->
+                <a href="index.html" class="brand-logo">
+                    <img src="logo2.jpeg" alt="Mental Health and Well-Being Logo">
+                    <div class="brand-text">
+                        <span class="brand-title">Mental Health and Well-Being</span>
+                        <span class="brand-subtitle">Your Daily Self-Care Portal</span>
+                    </div>
+                </a>
+
+                <!-- Core Navigation Links (Properly placed & clearly labeled) -->
+                <ul class="nav-links">
+                    <li><a href="index.html" class="nav-link active" data-i18n="navHome">Home</a></li>
+                    <li><a href="form.html" class="nav-link nav-highlight" data-i18n="navAssessment">📋 Assessment</a></li>
+                    <li><a href="#topics" class="nav-link" data-i18n="navTopics">Topics</a></li>
+                    <li><a href="#breathing" class="nav-link">Breathing Exercise</a></li>
+                    <li><a href="#about" class="nav-link" data-i18n="navAbout">About Us</a></li>
+                    <li><a href="#contact" class="nav-link" data-i18n="navContact">Contact Us</a></li>
+                </ul>
+
+                <!-- Header Actions (Search, Language, Helpline, Auth) -->
+                <div class="header-actions">
+                    <!-- Quick Search Form -->
+                    <form class="header-search-form" id="headerSearchForm" onsubmit="handleSearch(event)">
+                        <svg class="header-search-icon" viewBox="0 0 24 24">
+                            <path d="M21.71 20.29l-5.4-5.4A7.9 7.9 0 0 0 18 10a8 8 0 1 0-8 8 7.9 7.9 0 0 0 4.89-1.69l5.4 5.4a1 1 0 0 0 1.42-1.42zM4 10a6 6 0 1 1 6 6 6 6 0 0 1-6-6z"/>
+                        </svg>
+                        <input type="text" id="globalSearchInput" class="header-search-input" placeholder="Search topic...">
+                    </form>
+
+                    <!-- Language Selector -->
+                    <select id="langSelect" class="lang-selector" onchange="changeLanguage(this.value)" aria-label="Select Language">
+                        <option value="en">English</option>
+                        <option value="es">Español</option>
+                        <option value="fr">Français</option>
+                    </select>
+
+                    <!-- 24/7 Helpline SOS Button -->
+                    <button class="btn-sos" onclick="openCrisisModal()" title="Free 24/7 Crisis Help">
+                        <span>🚨</span> 24/7 Helpline
+                    </button>
+
+                    <!-- Sign In / Register Buttons -->
+                    <div class="auth-group" id="authButtons">
+                        <a href="login.html" class="btn btn-outline btn-sm" data-i18n="btnSignIn">Sign In</a>
+                        <a href="register.html" class="btn btn-primary btn-sm" data-i18n="btnRegister">Register</a>
+                    </div>
+
+                    <!-- Profile Dropdown (Displayed when signed in) -->
+                    <div class="user-profile-widget" id="profileWidget" style="display: none;">
+                        <button class="user-avatar-btn" onclick="toggleProfileDropdown(event)">
+                            <div class="user-avatar-img" id="userAvatarText">U</div>
+                            <span id="profileUsername">User</span>
+                            <span style="font-size: 0.7rem;">▼</span>
+                        </button>
+                        <div class="profile-dropdown-menu" id="profileDropdown">
+                            <div class="profile-dropdown-header">
+                                <div class="profile-dropdown-name" id="dropdownUsername">Welcome Back</div>
+                                <div class="profile-dropdown-email" id="profileEmail">user@example.com</div>
+                            </div>
+                            <a href="profile.html" class="profile-dropdown-item">
+                                <span>👤</span> My Profile & Dashboard
+                            </a>
+                            <a href="form.html" class="profile-dropdown-item">
+                                <span>📋</span> Take Assessment
+                            </a>
+                            <a href="search.html" class="profile-dropdown-item">
+                                <span>📚</span> Knowledge Library
+                            </a>
+                            <button class="profile-dropdown-item danger" onclick="handleLogout()">
+                                <span>🚪</span> Sign Out
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
         </div>
-        <div class="nav-links">
-            <a href="#home" onclick="showSection('home')">Home</a>
-            <a href="#about" onclick="showSection('about')">About Us</a>
-            <a href="#contact" onclick="showSection('contact')">Contact Us</a>
-        </div>
-        <div class="search-language">
-            <input type="text" id="search-box" class="search-box" placeholder="Search...">
-            <button id="search-btn" class="btn">Search</button>
-            <select class="language-select">
-                <option value="en">English</option>
-                <option value="es">Español</option>
-                <option value="fr">Français</option>
-            </select>
-        </div>
-        <div class="auth-buttons" id="authButtons">
-            <a href="login.html" class="btn">Sign In</a>
-            <a href="register.html" class="btn">Register</a>
-        </div>
-        <div class="profile-container" id="profileContainer">
-            <button class="profile-btn" onclick="toggleProfile()">Profile</button>
-            <div class="profile-dropdown" id="profileDropdown">
-                <p><strong>Username:</strong> <span id="profileUsername"></span></p>
-                <p><strong>Email:</strong> <span id="profileEmail"></span></p>
-                <p><strong>Phone:</strong> <span id="profilePhone"></span></p>
-                <button onclick="editProfile()">Edit Profile</button>
-                <button class="logout-btn" onclick="logout()">Logout</button>
+    </header>
+
+    <!-- ==================== MAIN CONTENT ==================== -->
+    <main id="home">
+
+        <!-- ===== HERO SECTION ===== -->
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-glass-card">
+                    <!-- Left Hero Content -->
+                    <div class="hero-content">
+                        <div class="hero-badge">
+                            <span>🌿</span> A Safe Place for Your Daily Well-Being
+                        </div>
+                        <h1 class="hero-title">
+                            Simple & Caring Support for Your <span>Mental Health</span> and Daily Well-Being
+                        </h1>
+                        <p class="hero-description">
+                            Welcome! Here you will find simple, caring advice to help with stress, sleep, anxiety, and daily happiness. Take a quick self-check, try relaxing breathing, or explore helpful topics.
+                        </p>
+                        <div class="hero-buttons">
+                            <a href="form.html" class="btn btn-primary btn-lg">
+                                <span>📋</span> Take Free Assessment
+                            </a>
+                            <a href="#breathing" class="btn btn-secondary btn-lg">
+                                <span>🫁</span> Try 2-Min Breathing
+                            </a>
+                            <a href="#topics" class="btn btn-outline btn-lg">
+                                <span>📚</span> Explore Topics
+                            </a>
+                        </div>
+
+                        <!-- Easy Search Box & Popular Topic Chips -->
+                        <div class="hero-search-hub">
+                            <span>🔍</span>
+                            <input type="text" id="heroSearchInput" placeholder="What are you dealing with today? (e.g. stress, sleep, sadness)..." onkeydown="if(event.key==='Enter'){window.location.href='search.html?query='+encodeURIComponent(this.value)}">
+                            <button class="btn btn-primary btn-sm" onclick="window.location.href='search.html?query='+encodeURIComponent(document.getElementById('heroSearchInput').value)">Search</button>
+                        </div>
+
+                        <div class="quick-topic-chips">
+                            <span style="font-size: 0.8rem; font-weight: 700; color: var(--slate-500);">Popular Topics:</span>
+                            <a href="search.html?query=stress" class="topic-chip">🌿 Stress</a>
+                            <a href="search.html?query=sleep" class="topic-chip">😴 Sleep</a>
+                            <a href="search.html?query=anxiety" class="topic-chip">🌊 Anxiety</a>
+                            <a href="search.html?query=diet" class="topic-chip">🥑 Healthy Food</a>
+                            <a href="search.html?query=focus" class="topic-chip">⚡ Focus</a>
+                            <a href="search.html?query=mood" class="topic-chip">❤️ Mood Swings</a>
+                            <a href="search.html?query=exercise" class="topic-chip">🏃‍♂️ Exercise</a>
+                        </div>
+                    </div>
+
+                    <!-- Right Hero Visual & Mood Check-In Widget -->
+                    <div class="hero-side-column">
+                        <!-- Daily Mood Check-In Card -->
+                        <div class="mood-checkin-card">
+                            <div class="mood-checkin-header">
+                                <span class="mood-checkin-title">✨ How are you feeling today?</span>
+                                <span class="mood-streak-badge">Daily Check-In</span>
+                            </div>
+                            <div class="mood-options-grid">
+                                <button class="mood-btn" onclick="selectMood('rad', this)">
+                                    <span class="mood-emoji">😄</span>
+                                    <span class="mood-label">Great</span>
+                                </button>
+                                <button class="mood-btn" onclick="selectMood('good', this)">
+                                    <span class="mood-emoji">😊</span>
+                                    <span class="mood-label">Good</span>
+                                </button>
+                                <button class="mood-btn" onclick="selectMood('okay', this)">
+                                    <span class="mood-emoji">😐</span>
+                                    <span class="mood-label">Okay</span>
+                                </button>
+                                <button class="mood-btn" onclick="selectMood('stressed', this)">
+                                    <span class="mood-emoji">😰</span>
+                                    <span class="mood-label">Stressed</span>
+                                </button>
+                                <button class="mood-btn" onclick="selectMood('overwhelmed', this)">
+                                    <span class="mood-emoji">🌧️</span>
+                                    <span class="mood-label">Sad / Low</span>
+                                </button>
+                            </div>
+                            <div id="moodFeedback" class="mood-feedback-box"></div>
+                        </div>
+
+                        <!-- Visual Artwork Card -->
+                        <div class="hero-visual-card" style="margin-top: 20px;">
+                            <img src="Designer.jpeg" alt="Mental Health and Well-Being Artwork" class="hero-visual-img">
+                            <div class="hero-visual-overlay">
+                                <p class="hero-visual-quote">"You don't have to control your thoughts. You just have to stop letting them control you."</p>
+                                <span class="hero-visual-author">— Dan Millman</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== TRUST & REASSURANCE BANNER ===== -->
+        <section class="trust-banner">
+            <div class="container">
+                <div class="trust-grid">
+                    <div class="trust-card">
+                        <div class="trust-icon-box">🔒</div>
+                        <div class="trust-text">
+                            <h4>100% Private & Safe</h4>
+                            <p>Everything you check stays safe and private on your phone or computer.</p>
+                        </div>
+                    </div>
+                    <div class="trust-card">
+                        <div class="trust-icon-box">🧠</div>
+                        <div class="trust-text">
+                            <h4>Easy to Understand</h4>
+                            <p>Simple advice written in normal, friendly English that works in daily life.</p>
+                        </div>
+                    </div>
+                    <div class="trust-card">
+                        <div class="trust-icon-box">🌟</div>
+                        <div class="trust-text">
+                            <h4>Holistic Care</h4>
+                            <p>Help with your sleep, food, exercise, thoughts, and friendships.</p>
+                        </div>
+                    </div>
+                    <div class="trust-card">
+                        <div class="trust-icon-box">🤝</div>
+                        <div class="trust-text">
+                            <h4>24/7 Free Helplines</h4>
+                            <p>Direct phone numbers if you ever need someone friendly to talk to.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== GUIDED BREATHING EXERCISE (BOX BREATHING) ===== -->
+        <section class="breathing-section" id="breathing">
+            <div class="container">
+                <div class="breathing-container">
+                    <span class="section-tag" style="background: rgba(255, 255, 255, 0.2); color: white; border-color: rgba(255, 255, 255, 0.3);">Relaxing Exercise</span>
+                    <h2 class="breathing-title">Relax Your Mind with Simple Breathing (4-4-4-4)</h2>
+                    <p class="breathing-subtitle">
+                        Breathe in slowly, hold gently, breathe out, and pause. Doing this for just 2 minutes helps you feel calm, lowers stress, and clears your mind.
+                    </p>
+
+                    <!-- Breathing Orb -->
+                    <div class="breath-circle-wrapper">
+                        <div class="breath-orb-outer"></div>
+                        <div class="breath-orb-inner" id="breathOrb">
+                            <span class="breath-instruction" id="breathInstruction">Ready to Relax?</span>
+                            <span class="breath-timer" id="breathTimer">4s</span>
+                        </div>
+                    </div>
+
+                    <!-- Controls -->
+                    <div class="breathing-controls">
+                        <button class="btn btn-secondary btn-lg" id="breathToggleBtn" onclick="toggleBreathing()">
+                            <span>▶️</span> Start Breathing Exercise
+                        </button>
+                    </div>
+                    <div id="breathCycleCounter" style="margin-top: 14px; font-size: 0.85rem; color: var(--primary-100); font-weight: 600;">Cycles completed: 0</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 12 CORE WELLNESS TOPICS GRID ===== -->
+        <section class="topics-section" id="topics">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Helpful Guides</span>
+                    <h2 class="section-title">Helpful Topics for Your Mental Health</h2>
+                    <p class="section-subtitle">
+                        Click on any topic below to read easy-to-follow tips and simple ways to feel better.
+                    </p>
+                </div>
+
+                <div class="topics-grid">
+                    <!-- 1. Stress -->
+                    <div class="topic-card">
+                        <div class="topic-card-media">
+                            <img src="stress.jpg" alt="Stress Management">
+                            <span class="topic-card-badge">Stress Relief</span>
+                            <span class="topic-card-readtime">3 min read</span>
+                        </div>
+                        <div class="topic-card-body">
+                            <h3 class="topic-card-title">Stress Management</h3>
+                            <p class="topic-card-snippet">Learn simple ways to relax your body and mind when work, study, or daily life feels too busy or overwhelming.</p>
+                            <div class="topic-card-footer">
+                                <button class="topic-card-link" onclick="openTopicModal('stress')">Read Simple Guide →</button>
+                                <a href="search.html?query=stress" style="font-size: 0.8rem; color: var(--slate-400);">Search Topic</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Anxiety -->
+                    <div class="topic-card">
+                        <div class="topic-card-media">
+                            <img src="anxiety.jpeg" alt="Anxiety Relief">
+                            <span class="topic-card-badge">Calm Mind</span>
+                            <span class="topic-card-readtime">4 min read</span>
+                        </div>
+                        <div class="topic-card-body">
+                            <h3 class="topic-card-title">Calming Anxiety & Worries</h3>
+                            <p class="topic-card-snippet">How to stop racing thoughts, calm your rapid heartbeat, and feel steady when worry tries to take over.</p>
+                            <div class="topic-card-footer">
+                                <button class="topic-card-link" onclick="openTopicModal('anxiety')">Read Simple Guide →</button>
+                                <a href="search.html?query=anxiety" style="font-size: 0.8rem; color: var(--slate-400);">Search Topic</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Sleep -->
+                    <div class="topic-card">
+                        <div class="topic-card-media">
+                            <img src="sleep.jpg" alt="Sleep Hygiene">
+                            <span class="topic-card-badge">Good Sleep</span>
+                            <span class="topic-card-readtime">3 min read</span>
+                        </div>
+                        <div class="topic-card-body">
+                            <h3 class="topic-card-title">Getting Restful Sleep</h3>
+                            <p class="topic-card-snippet">Easy sleep habits to help you fall asleep faster, stay asleep all night, and wake up feeling refreshed and energized.</p>
+                            <div class="topic-card-footer">
+                                <button class="topic-card-link" onclick="openTopicModal('sleep')">Read Simple Guide →</button>
+                                <a href="search.html?query=sleep" style="font-size: 0.8rem; color: var(--slate-400);">Search Topic</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4. Diet -->
+                    <div class="topic-card">
+                        <div class="topic-card-media">
+                            <img src="diet1.jpg" alt="Healthy Food">
+                            <span class="topic-card-badge">Healthy Food</span>
+                            <span class="topic-card-readtime">3 min read</span>
+                        </div>
+                        <div class="topic-card-body">
+                            <h3 class="topic-card-title">Healthy Food for a Happy Mind</h3>
+                            <p class="topic-card-snippet">What you eat affects how you feel! Discover simple foods like fruits, nuts, and greens that boost your mood and focus.</p>
+                            <div class="topic-card-footer">
+                                <button class="topic-card-link" onclick="openTopicModal('diet')">Read Simple Guide →</button>
+                                <a href="search.html?query=diet" style="font-size: 0.8rem; color: var(--slate-400);">Search Topic</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 5. Exercise -->
+                    <div class="topic-card">
+                        <div class="topic-card-media">
+                            <img src="exercise.jpg" alt="Exercise">
+                            <span class="topic-card-badge">Daily Movement</span>
+                            <span class="topic-card-readtime">3 min read</span>
+                        </div>
+                        <div class="topic-card-body">
+                            <h3 class="topic-card-title">Daily Movement & Exercise</h3>
+                            <p class="topic-card-snippet">You do not need heavy workouts. Even a simple 20-minute daily walk can naturally lift your spirits and reduce sadness.</p>
+                            <div class="topic-card-footer">
+                                <button class="topic-card-link" onclick="openTopicModal('exercise')">Read Simple Guide →</button>
+                                <a href="search.html?query=exercise" style="font-size: 0.8rem; color: var(--slate-400);">Search Topic</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 6. Mood Swings -->
+                    <div class="topic-card">
+                        <div class="topic-card-media">
+                            <img src="mood.jpg" alt="Mood Swings">
+                            <span class="topic-card-badge">Balanced Mood</span>
+                            <span class="topic-card-readtime">3 min read</span>
+                        </div>
+                        <div class="topic-card-body">
+                            <h3 class="topic-card-title">Handling Mood Swings</h3>
+                            <p class="topic-card-snippet">Simple ways to understand why your mood suddenly changes and how to stay calm, patient, and centered.</p>
+                            <div class="topic-card-footer">
+                                <button class="topic-card-link" onclick="openTopicModal('mood')">Read Simple Guide →</button>
+                                <a href="search.html?query=mood swings" style="font-size: 0.8rem; color: var(--slate-400);">Search Topic</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 7. Focus -->
+                    <div class="topic-card">
+                        <div class="topic-card-media">
+                            <img src="focus1.jpg" alt="Focus">
+                            <span class="topic-card-badge">Focus</span>
+                            <span class="topic-card-readtime">3 min read</span>
+                        </div>
+                        <div class="topic-card-body">
+                            <h3 class="topic-card-title">Staying Focused & Getting Things Done</h3>
+                            <p class="topic-card-snippet">How to avoid phone distractions, beat procrastination, and focus peacefully on your work or study.</p>
+                            <div class="topic-card-footer">
+                                <button class="topic-card-link" onclick="openTopicModal('focus')">Read Simple Guide →</button>
+                                <a href="search.html?query=focus" style="font-size: 0.8rem; color: var(--slate-400);">Search Topic</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 8. Sadness -->
+                    <div class="topic-card">
+                        <div class="topic-card-media">
+                            <img src="sad.jpg" alt="Sadness">
+                            <span class="topic-card-badge">Healing</span>
+                            <span class="topic-card-readtime">4 min read</span>
+                        </div>
+                        <div class="topic-card-body">
+                            <h3 class="topic-card-title">Coping with Sadness & Feeling Low</h3>
+                            <p class="topic-card-snippet">Gentle, kind steps to take when you feel down, lonely, or heartbroken. You are never alone.</p>
+                            <div class="topic-card-footer">
+                                <button class="topic-card-link" onclick="openTopicModal('sadness')">Read Simple Guide →</button>
+                                <a href="search.html?query=overwhelming sadness" style="font-size: 0.8rem; color: var(--slate-400);">Search Topic</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 9. Hyperactivity -->
+                    <div class="topic-card">
+                        <div class="topic-card-media">
+                            <img src="hyperactivity.jpg" alt="Hyperactivity">
+                            <span class="topic-card-badge">Energy Balance</span>
+                            <span class="topic-card-readtime">3 min read</span>
+                        </div>
+                        <div class="topic-card-body">
+                            <h3 class="topic-card-title">Managing Restlessness & High Energy</h3>
+                            <p class="topic-card-snippet">Helpful tips for when you cannot sit still, feel fidgety, or have lots of energy you want to channel positively.</p>
+                            <div class="topic-card-footer">
+                                <button class="topic-card-link" onclick="openTopicModal('hyperactivity')">Read Simple Guide →</button>
+                                <a href="search.html?query=hyperactivity" style="font-size: 0.8rem; color: var(--slate-400);">Search Topic</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 10. Anger -->
+                    <div class="topic-card">
+                        <div class="topic-card-media">
+                            <img src="anger.jpeg" alt="Anger">
+                            <span class="topic-card-badge">Peace & Calm</span>
+                            <span class="topic-card-readtime">3 min read</span>
+                        </div>
+                        <div class="topic-card-body">
+                            <h3 class="topic-card-title">Controlling Frustration & Anger</h3>
+                            <p class="topic-card-snippet">Learn how to pause, take a deep breath, and express yourself calmly before saying things you might regret.</p>
+                            <div class="topic-card-footer">
+                                <button class="topic-card-link" onclick="openTopicModal('anger')">Read Simple Guide →</button>
+                                <a href="search.html?query=anger" style="font-size: 0.8rem; color: var(--slate-400);">Search Topic</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 11. Social Connection -->
+                    <div class="topic-card">
+                        <div class="topic-card-media">
+                            <img src="si.jpg" alt="Social Interaction">
+                            <span class="topic-card-badge">Friendships</span>
+                            <span class="topic-card-readtime">3 min read</span>
+                        </div>
+                        <div class="topic-card-body">
+                            <h3 class="topic-card-title">Connecting with Friends & Family</h3>
+                            <p class="topic-card-snippet">Why having good conversations and spending time with supportive people makes you feel happier and less stressed.</p>
+                            <div class="topic-card-footer">
+                                <button class="topic-card-link" onclick="openTopicModal('social')">Read Simple Guide →</button>
+                                <a href="search.html?query=social interaction" style="font-size: 0.8rem; color: var(--slate-400);">Search Topic</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 12. Mental Clarity -->
+                    <div class="topic-card">
+                        <div class="topic-card-media">
+                            <img src="thinking.jpeg" alt="Clear Thinking">
+                            <span class="topic-card-badge">Clear Mind</span>
+                            <span class="topic-card-readtime">3 min read</span>
+                        </div>
+                        <div class="topic-card-body">
+                            <h3 class="topic-card-title">Clearing Brain Fog & Confusion</h3>
+                            <p class="topic-card-snippet">Simple habits to refresh your brain, get rid of mental tiredness, and think clearly again.</p>
+                            <div class="topic-card-footer">
+                                <button class="topic-card-link" onclick="openTopicModal('thinking')">Read Simple Guide →</button>
+                                <a href="search.html?query=confused thinking" style="font-size: 0.8rem; color: var(--slate-400);">Search Topic</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== ASSESSMENT SPOTLIGHT BANNER ===== -->
+        <section class="assessment-cta-section">
+            <div class="container">
+                <div class="assessment-cta-card">
+                    <div>
+                        <span class="section-tag" style="background: rgba(255, 255, 255, 0.15); color: var(--primary-300); border-color: rgba(255, 255, 255, 0.2);">Free & Fast Self-Check</span>
+                        <h3>Take Your Free Mental Health Assessment</h3>
+                        <p>Answer 10 simple questions about your mood, sleep, stress, and habits. It only takes 2 minutes and gives you a clear score with personalized, practical tips.</p>
+                        
+                        <ul class="assessment-points-list">
+                            <li>
+                                <svg viewBox="0 0 20 20"><path d="M16.7 5.3a1 1 0 0 1 0 1.4l-8 8a1 1 0 0 1-1.4 0l-4-4a1 1 0 1 1 1.4-1.4L8 12.6l7.3-7.3a1 1 0 0 1 1.4 0z"/></svg>
+                                2-Minute Quick Check
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 20 20"><path d="M16.7 5.3a1 1 0 0 1 0 1.4l-8 8a1 1 0 0 1-1.4 0l-4-4a1 1 0 1 1 1.4-1.4L8 12.6l7.3-7.3a1 1 0 0 1 1.4 0z"/></svg>
+                                Instant Score (0 to 100)
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 20 20"><path d="M16.7 5.3a1 1 0 0 1 0 1.4l-8 8a1 1 0 0 1-1.4 0l-4-4a1 1 0 1 1 1.4-1.4L8 12.6l7.3-7.3a1 1 0 0 1 1.4 0z"/></svg>
+                                Simple Everyday Advice
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 20 20"><path d="M16.7 5.3a1 1 0 0 1 0 1.4l-8 8a1 1 0 0 1-1.4 0l-4-4a1 1 0 1 1 1.4-1.4L8 12.6l7.3-7.3a1 1 0 0 1 1.4 0z"/></svg>
+                                Completely Confidential
+                            </li>
+                        </ul>
+
+                        <a href="form.html" class="btn btn-primary btn-lg">
+                            <span>🚀</span> Start Assessment Now
+                        </a>
+                    </div>
+
+                    <div class="assessment-cta-badge">
+                        <div class="assessment-cta-score-preview">85<span style="font-size: 1.5rem; color: var(--slate-400);">/100</span></div>
+                        <div style="font-weight: 700; font-size: 1.1rem; color: var(--primary-300); margin-bottom: 6px;">Healthy & Balanced</div>
+                        <p style="font-size: 0.85rem; color: var(--slate-400); margin: 0;">Example of a completed test score showing good sleep and manageable daily stress.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== DAILY POSITIVE THOUGHT ===== -->
+        <section class="affirmation-section">
+            <div class="container container-narrow">
+                <div class="affirmation-card">
+                    <div class="affirmation-content">
+                        <span class="section-tag" style="margin-bottom: 16px;">Daily Positive Thought</span>
+                        <div class="affirmation-quote" id="affirmationQuote">
+                            "I am worthy of peace, respect, and being kind to myself every single day."
+                        </div>
+                        <div class="affirmation-tag" id="affirmationTag">#Self-Kindness</div>
+                        <button class="btn btn-secondary btn-sm" onclick="nextAffirmation()">
+                            <span>✨</span> Show Another Thought
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== ABOUT US SECTION ===== -->
+        <section class="about-section" id="about">
+            <div class="container">
+                <div class="about-grid">
+                    <div class="about-content">
+                        <span class="section-tag">About Us</span>
+                        <h2>Mental Health and Well-Being for Everyone</h2>
+                        <p>
+                            Taking care of your mind is just as important as taking care of your body. In today’s fast-paced world, feeling stressed, tired, or worried is completely normal—not a failure.
+                        </p>
+                        <p>
+                            Our goal is to give you simple, kind, and practical tools to feel better each day, without any judgment or stigma.
+                        </p>
+
+                        <div class="values-grid">
+                            <div class="value-card">
+                                <h4><span>📚</span> Learn</h4>
+                                <p>Simple, clear explanations about feelings, stress, and mental well-being.</p>
+                            </div>
+                            <div class="value-card">
+                                <h4><span>❤️</span> Support</h4>
+                                <p>A friendly space where you can find encouragement whenever you need it.</p>
+                            </div>
+                            <div class="value-card">
+                                <h4><span>🛠️</span> Tools</h4>
+                                <p>Helpful exercises like 2-minute breathing and our quick self-assessment.</p>
+                            </div>
+                            <div class="value-card">
+                                <h4><span>📢</span> Care</h4>
+                                <p>Reminding everyone that asking for help is a brave and healthy choice.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="border-radius: var(--radius-xl); overflow: hidden; box-shadow: var(--shadow-xl); border: 4px solid white;">
+                        <img src="bg.jpg" alt="Mental Health and Well-Being" style="width: 100%; height: 460px; object-fit: cover;">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== CONTACT US SECTION ===== -->
+        <section class="contact-section" id="contact">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Contact Us</span>
+                    <h2 class="section-title">We Are Here to Help & Listen</h2>
+                    <p class="section-subtitle">
+                        Have a question, feedback, or need help using this website? Send us a quick message below.
+                    </p>
+                </div>
+
+                <div class="contact-grid">
+                    <!-- Contact Form -->
+                    <div class="contact-card">
+                        <h3 style="font-size: 1.4rem; margin-bottom: 20px;">Send Us a Message</h3>
+                        <form id="contactForm" onsubmit="event.preventDefault(); showToast('Thank you! Your message has been sent successfully.', 'success'); this.reset();">
+                            <div class="form-group">
+                                <label class="form-label" for="contactName">Your Name</label>
+                                <input type="text" id="contactName" class="form-input" placeholder="Enter your name" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="contactEmail">Your Email Address</label>
+                                <input type="email" id="contactEmail" class="form-input" placeholder="e.g. name@example.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="contactSubject">What is this about?</label>
+                                <select id="contactSubject" class="form-select">
+                                    <option>General Question or Feedback</option>
+                                    <option>Help with Assessment Test</option>
+                                    <option>Suggest a New Topic</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="contactMessage">Your Message</label>
+                                <textarea id="contactMessage" class="form-textarea" placeholder="How can we help you? Write your message here..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
+                                <span>✉️</span> Send Message
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Direct Contact & Helpline Numbers -->
+                    <div class="contact-card" style="background: var(--slate-50);">
+                        <h3 style="font-size: 1.4rem; margin-bottom: 10px;">Direct Contact Details</h3>
+                        <p style="color: var(--slate-600); font-size: 0.9rem;">You can also reach out to our student wellness and support team directly:</p>
+
+                        <div class="contact-info-list">
+                            <div class="contact-info-item">
+                                <div class="contact-icon">📧</div>
+                                <div>
+                                    <strong style="color: var(--slate-800); font-size: 0.95rem;">Email Support</strong>
+                                    <p style="margin: 0; font-size: 0.88rem; color: var(--slate-600);"><a href="mailto:barathwajmaduri6@gmail.com">barathwajmaduri6@gmail.com</a></p>
+                                </div>
+                            </div>
+                            <div class="contact-info-item">
+                                <div class="contact-icon">📱</div>
+                                <div>
+                                    <strong style="color: var(--slate-800); font-size: 0.95rem;">Direct Phone</strong>
+                                    <p style="margin: 0; font-size: 0.88rem; color: var(--slate-600);"><a href="tel:+918328093552">+91 8328093552</a> / <a href="tel:+917673921139">+91 7673921139</a></p>
+                                </div>
+                            </div>
+                            <div class="contact-info-item">
+                                <div class="contact-icon">🏫</div>
+                                <div>
+                                    <strong style="color: var(--slate-800); font-size: 0.95rem;">Institution</strong>
+                                    <p style="margin: 0; font-size: 0.88rem; color: var(--slate-600);">CMR Institute of Technology (CMRIT), Hyderabad</p>
+                                    <p style="margin: 0; font-size: 0.82rem; color: var(--slate-500);"><a href="mailto:23r01a66c8@cmrithyderabad.edu.in">23r01a66c8@cmrithyderabad.edu.in</a></p>
+                                </div>
+                            </div>
+                            <div class="contact-info-item" style="background: var(--accent-rose-soft); border: 1px solid var(--accent-rose);">
+                                <div class="contact-icon" style="background: white; color: var(--accent-rose);">🚨</div>
+                                <div>
+                                    <strong style="color: var(--accent-rose); font-size: 0.95rem;">Need Immediate Help?</strong>
+                                    <p style="margin: 0; font-size: 0.84rem; color: var(--slate-700);">If you are in danger or feel overwhelmed, call <strong>988</strong> (USA/Canada) or <strong>14416</strong> (Tele-MANAS, India) for free, 24/7 support.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="site-footer">
+        <div class="container">
+            <!-- 24/7 Helpline Banner -->
+            <div class="footer-helpline-bar">
+                <div>
+                    <h4>Need someone to talk to right now? You are not alone.</h4>
+                    <p style="margin: 0; font-size: 0.9rem; color: var(--slate-300);">Free, confidential, 24/7 caring counselors are ready to help you.</p>
+                </div>
+                <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+                    <a href="tel:988" class="btn btn-sos">📞 Call 988 (USA/CA)</a>
+                    <a href="tel:14416" class="btn btn-secondary">📞 Tele-MANAS: 14416 (India)</a>
+                    <button class="btn btn-outline" style="color: white; border-color: rgba(255,255,255,0.3);" onclick="openCrisisModal()">View All Helplines</button>
+                </div>
+            </div>
+
+            <!-- Footer Columns -->
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="brand-logo" style="margin-bottom: 16px;">
+                        <img src="logo2.jpeg" alt="Mental Health and Well-Being">
+                        <span class="brand-title" style="color: white;">Mental Health and Well-Being</span>
+                    </div>
+                    <p style="font-size: 0.9rem; line-height: 1.6; color: var(--slate-400); margin-bottom: 18px;">
+                        A friendly and supportive place to learn about mental health, check how you are feeling, and find simple ways to stay balanced and happy.
+                    </p>
+                </div>
+
+                <div class="footer-col">
+                    <h5>Helpful Topics</h5>
+                    <ul class="footer-links">
+                        <li><a href="search.html?query=stress">Stress Relief</a></li>
+                        <li><a href="search.html?query=anxiety">Calming Anxiety</a></li>
+                        <li><a href="search.html?query=sleep">Better Sleep</a></li>
+                        <li><a href="search.html?query=diet">Healthy Food</a></li>
+                        <li><a href="search.html?query=mood">Mood Swings</a></li>
+                        <li><a href="search.html?query=focus">Daily Focus</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h5>Quick Links</h5>
+                    <ul class="footer-links">
+                        <li><a href="form.html">Take Assessment Test</a></li>
+                        <li><a href="#breathing">Guided Breathing Exercise</a></li>
+                        <li><a href="profile.html">My Personal Dashboard</a></li>
+                        <li><a href="search.html">Search All Topics</a></li>
+                        <li><a href="login.html">Sign In</a></li>
+                        <li><a href="register.html">Register Free</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h5>Free Crisis Helplines</h5>
+                    <ul class="footer-links">
+                        <li><a href="tel:988">988 Suicide & Crisis Lifeline</a></li>
+                        <li><a href="tel:14416">Tele-MANAS Helpline (14416)</a></li>
+                        <li><a href="https://www.crisistextline.org/" target="_blank">Crisis Text Line (Text HOME to 741741)</a></li>
+                        <li><a href="tel:18005990019">KIRAN Helpline (1800-599-0019)</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <div>
+                    © 2026 Mental Health and Well-Being. Made with care for your health and happiness.
+                </div>
+                <div style="max-width: 600px; text-align: right; font-size: 0.78rem; color: var(--slate-500);">
+                    <strong>Friendly Disclaimer:</strong> This website is for educational and self-care purposes. It does not replace a doctor or medical diagnosis. If you ever feel in danger or need urgent help, please call your local emergency services or helpline immediately.
+                </div>
             </div>
         </div>
-    </nav>
+    </footer>
 
-    <div class="mental-health-section" id="homeSection">
-        <h2>Understanding Mental Health & Well-Being</h2>
-        <script src="home.js"></script>
+    <!-- ==================== CRISIS HELPLINE MODAL ==================== -->
+    <div class="modal-overlay" id="crisisModal" onclick="if(event.target===this) closeCrisisModal()">
+        <div class="modal-container">
+            <div class="modal-header" style="background: var(--accent-rose-soft); border-bottom: 1px solid var(--accent-rose);">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <span style="font-size: 1.6rem;">🚨</span>
+                    <div>
+                        <h3 style="color: #9f1239; margin: 0; font-size: 1.3rem;">24/7 Immediate Help</h3>
+                        <p style="margin: 0; font-size: 0.85rem; color: #be123c;">You do not have to carry this alone. Free, caring help is available right now.</p>
+                    </div>
+                </div>
+                <button class="modal-close-btn" onclick="closeCrisisModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <div style="display: flex; flex-direction: column; gap: 16px;">
+                    <div style="background: var(--slate-50); padding: 18px; border-radius: var(--radius-md); border-left: 4px solid #ef4444;">
+                        <h4 style="color: var(--slate-900); margin-bottom: 4px;">🇺🇸 USA & Canada: 988 Lifeline</h4>
+                        <p style="font-size: 0.88rem; color: var(--slate-600); margin-bottom: 8px;">Available 24 hours a day, 7 days a week. Free, confidential, in English & Spanish.</p>
+                        <a href="tel:988" class="btn btn-sos">📞 Call or Text 988</a>
+                    </div>
+
+                    <div style="background: var(--slate-50); padding: 18px; border-radius: var(--radius-md); border-left: 4px solid #0d9488;">
+                        <h4 style="color: var(--slate-900); margin-bottom: 4px;">🇮🇳 India: Tele-MANAS Mental Health Helpline</h4>
+                        <p style="font-size: 0.88rem; color: var(--slate-600); margin-bottom: 8px;">Free 24/7 helpline by the Government of India in multiple regional languages.</p>
+                        <a href="tel:14416" class="btn btn-primary">📞 Call 14416 or 1800-891-4416</a>
+                    </div>
+
+                    <div style="background: var(--slate-50); padding: 18px; border-radius: var(--radius-md); border-left: 4px solid #6366f1;">
+                        <h4 style="color: var(--slate-900); margin-bottom: 4px;">💬 Crisis Text Line (Free Chat)</h4>
+                        <p style="font-size: 0.88rem; color: var(--slate-600); margin-bottom: 8px;">Prefer texting? Connect with a trained, friendly crisis counselor 24/7.</p>
+                        <div style="font-weight: 700; color: var(--slate-800); font-size: 0.95rem;">Text HOME to 741741</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="mental-health-section hidden-section" id="aboutSection">
-        <h2>About Us</h2>
-        <script src="about us.js"></script>
+    <!-- ==================== TOPIC DETAIL READING MODAL ==================== -->
+    <div class="modal-overlay" id="topicModal" onclick="if(event.target===this) closeTopicModal()">
+        <div class="modal-container" style="max-width: 820px;">
+            <div class="modal-header">
+                <div>
+                    <span class="section-tag" id="topicModalTag" style="margin-bottom: 4px;">Helpful Guide</span>
+                    <h2 id="topicModalTitle" style="font-size: 1.6rem; color: var(--slate-900); margin: 0;"></h2>
+                </div>
+                <button class="modal-close-btn" onclick="closeTopicModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <div style="display: flex; gap: 14px; margin-bottom: 20px; align-items: center;">
+                    <span style="font-size: 0.85rem; color: var(--slate-500);">⏱️ Reading Time: <strong id="topicModalReadTime">3 min read</strong></span>
+                </div>
+
+                <div class="search-img-row">
+                    <div class="search-img-frame">
+                        <img id="topicModalImg" src="stress.jpg" alt="Topic image">
+                    </div>
+                    <div class="search-img-frame">
+                        <img id="topicModalImg2" src="stress1.jpg" alt="Advice image">
+                    </div>
+                </div>
+
+                <p id="topicModalSummary" style="font-size: 1.05rem; line-height: 1.7; color: var(--slate-700); margin-bottom: 24px;"></p>
+
+                <h3 style="font-size: 1.25rem; color: var(--slate-900); margin-bottom: 12px;">Common Causes</h3>
+                <ul id="topicModalCauses" style="padding-left: 20px; color: var(--slate-700); line-height: 1.7; margin-bottom: 24px;"></ul>
+
+                <h3 style="font-size: 1.25rem; color: var(--slate-900); margin-bottom: 12px;">How You Might Feel (Signs)</h3>
+                <ul id="topicModalSymptoms" style="padding-left: 20px; color: var(--slate-700); line-height: 1.7; margin-bottom: 24px;"></ul>
+
+                <h3 style="font-size: 1.25rem; color: var(--slate-900); margin-bottom: 14px;">Simple Ways to Feel Better</h3>
+                <div id="topicModalStrategies" style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px;"></div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--slate-200); padding-top: 20px;">
+                    <span style="font-size: 0.88rem; color: var(--slate-500);">Want to check your general score?</span>
+                    <a href="form.html" class="btn btn-primary btn-sm">Take Free Assessment →</a>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="mental-health-section hidden-section" id="contactSection">
-        <h2>Contact Us</h2>
-        <p>If you have any questions or comments, please feel free to contact us.</p>
-        <p>Email: pavanrakhi229@gmail.com</p>
-        <p>Phone: 7673921139</p>
-        <p>Email: barathwajmaduri6@gmail.com</p>
-        <p>Phone: 8328093552</p>
-        <p>Email: 23r01a66c8@cmrithyderabad.edu.in</p>
-        <p>Phone: 7386427378</p>
-    </div>
+    <!-- Toast container -->
+    <div id="toastContainer" class="toast-container"></div>
 
-    <script>
-        function updateAuthButtons() {
-            let loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
-
-            if (loggedInUser) {
-                document.getElementById("authButtons").style.display = "none";
-                document.getElementById("profileContainer").style.display = "block";
-
-                document.getElementById("profileUsername").innerText = loggedInUser.username || "N/A";
-                document.getElementById("profileEmail").innerText = loggedInUser.email || "N/A";
-                document.getElementById("profilePhone").innerText = loggedInUser.phone || "N/A";
-            }
-        }
-
-        function toggleProfile() {
-            let profileDropdown = document.getElementById("profileDropdown");
-            profileDropdown.style.display = (profileDropdown.style.display === "block") ? "none" : "block";
-        }
-
-        function editProfile() {
-            window.location.href = "profile.html";
-        }
-
-        function logout() {
-            localStorage.removeItem("loggedInUser");
-            alert("Logged out successfully!");
-            window.location.href = "login.html";
-        }
-
-        function showSection(sectionId) {
-            document.querySelectorAll('.mental-health-section').forEach(section => {
-                section.classList.add('hidden-section');
-            });
-            document.getElementById(sectionId + 'Section').classList.remove('hidden-section');
-        }
-
-        function performSearch() {
-            const searchQuery = document.getElementById("search-box").value;
-            if (searchQuery) {
-                window.location.href = `search.html?query=${encodeURIComponent(searchQuery)}`;
-            } else {
-                alert("Please enter a search query.");
-            }
-        }
-
-        document.addEventListener("DOMContentLoaded", function() {
-            updateAuthButtons();
-            showSection('home');
-            document.getElementById("search-btn").addEventListener("click", performSearch);
-        });
-    </script>
-    <script src="script1.js"></script>
-    <script src="sleep.js"></script>
-    <script src="socialinteraction.js"></script>
-    <script src="stress.js"></script>
-    <script src="anxiety.js"></script>
-    <script src="diet.js"></script>
-    <script src="exercise.js"></script>
+    <!-- Scripts -->
+    <script src="app.js"></script>
 </body>
 </html>
